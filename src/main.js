@@ -549,88 +549,88 @@ function initRoomsPage() {
       price: "₱7,800",
       bestFor: "Couples, small families",
       location: "Ground floor",
-      amenities: ["Traditional design", "Queen-size bed", "Private veranda", "Ceiling fan", "Mini fridge", "Coffee maker"]
+      amenities: ["Air conditioning", "Hot & cold shower", "Free WiFi", "Dining area", "Pool access", "Premium bedding"]
     },
     "BEATRICE B": {
       image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Comfortable cottage with garden access and relaxing atmosphere.",
-      capacity: "Up to 4 guests",
+      capacity: "Up to 6-8 guests",
       price: "₱6,800",
-      bestFor: "Couples, small families",
-      location: "Garden area",
-      amenities: ["Garden access", "Queen-size bed", "Private seating area", "Ceiling fan", "Mini fridge", "Coffee maker"]
+      bestFor: "Travelers, small families",
+      location: "Ground floor",
+      amenities: ["Air conditioning", "Hot & cold shower", "Free WiFi", "Dining area", "Pool access", "Premium bedding"]
     },
     "CONCIERGE 815/819": {
       image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Interconnected rooms with premium concierge service and exclusive amenities.",
-      capacity: "Up to 6 guests",
+      capacity: "Up to 6-8 guests",
       price: "₱8,800",
-      bestFor: "Families, business travelers",
+      bestFor: "Families, groups",
       location: "Main building",
-      amenities: ["Interconnected rooms", "Concierge service", "Work desk", "Premium linens", "Coffee station", "Free WiFi"]
+      amenities: ["Spacious layout", "Air conditioning", "Work desk", "Pool access", "Free WiFi"]
     },
     "CONCIERGE 817": {
       image: "https://images.unsplash.com/photo-1591088398332-8a7791972843?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Premium room with dedicated concierge service and business-friendly amenities.",
-      capacity: "Up to 3 guests",
+      capacity: "Up to 8-10 guests",
       price: "₱9,800",
-      bestFor: "Business travelers, couples",
+      bestFor: "Families, barkada",
       location: "Main building",
-      amenities: ["Concierge service", "Work desk", "Premium linens", "Coffee maker", "Mini bar", "Free WiFi"]
+      amenities: ["Lounge area", "Air conditioning", "Free WiFi", "Pool access", "Mini fridge"]
     },
     "PREMIUM 838": {
       image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Upgraded accommodation with premium features and stylish design.",
-      capacity: "Up to 4 guests",
+      capacity: "Up to 6-8 guests",
       price: "₱7,800",
-      bestFor: "Couples, small families",
+      bestFor: "Couples, small groups",
       location: "Beach view",
-      amenities: ["Beach view", "King-size bed", "Sofa bed", "Premium toiletries", "Coffee maker", "Smart TV"]
+      amenities: ["Beach view", "King-size bed", "Air conditioning", " Free WiFi", "Pool access"]
     },
     "PREMIUM 840": {
       image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Spacious premium cottage with modern amenities and comfortable living space.",
-      capacity: "Up to 4 guests",
+      capacity: "Up to 6-8 guests",
       price: "₱8,800",
       bestFor: "Couples, small families",
       location: "Beach view",
-      amenities: ["Beach view", "King-size bed", "Sitting area", "Premium toiletries", "Coffee maker", "Smart TV"]
+      amenities: [" Air conditioning", "King-size bed", "Sitting area", "Private bathroom", "Free WiFi", "Pool access"]
     },
     "GIANT KUBO": {
       image: "https://images.unsplash.com/photo-1586375300773-8384e3e4916f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Traditional Filipino-style cottage with modern amenities and spacious layout.",
-      capacity: "Up to 8 guests",
+      capacity: "Up to 12-15 guests",
       price: "₱6,800",
       bestFor: "Large families, groups",
       location: "Garden area",
-      amenities: ["Traditional design", "Spacious layout", "Multiple beds", "Private bathroom", "Dining area", "Garden view"]
+      amenities: ["Native bamboo design", "Open-air concept", "Multiple beds", "Electric fan", " Pool access"]
     },
     "SEASIDE (WHOLE)": {
       image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Complete seaside cottage with direct beach access and panoramic ocean views.",
-      capacity: "Up to 6 guests",
+      capacity: "Up to 14-16 guests",
       price: "₱6,800",
       bestFor: "Families, groups",
       location: "Beachfront",
-      amenities: ["Direct beach access", "Ocean view", "Multiple bedrooms", "Full kitchen", "Living area", "Private terrace"]
+      amenities: ["Seaside cottage", "Oceanfront", "Spacious seating", " Pool access"]
     },
     "SEASIDE (HALF)": {
       image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Cozy seaside accommodation with beach proximity and comfortable amenities.",
-      capacity: "Up to 4 guests",
+      capacity: "Up to 8-10 guests",
       price: "₱3,400",
       bestFor: "Couples, small families",
       location: "Beachfront",
-      amenities: ["Beach proximity", "Ocean view", "Queen-size bed", "Kitchenette", "Private balcony", "Free WiFi"]
+      amenities: ["Open-style cottage", "Oceanfront", "Queen-size bed", "Kitchenette", "Pool access"]
     },
     "BAMBOO KUBO": {
       image: "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Authentic bamboo cottage offering a traditional Filipino experience with modern comforts.",
-      capacity: "Up to 4 guests",
+      capacity: "Up to 6-8 guests",
       price: "₱2,800",
-      bestFor: "Couples, cultural experience seekers",
-      location: "Garden area",
-      amenities: ["Traditional bamboo construction", "Queen-size bed", "Private bathroom", "Ceiling fan", "Mini fridge", "Garden view"]
+      bestFor: "Budget groups",
+      location: "Beachfront area",
+      amenities: ["Bamboo structure", "Queen-size bed", "Pool access", "Ceiling fan", "Mini fridge"]
     }
   };
 
