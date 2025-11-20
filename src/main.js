@@ -489,82 +489,82 @@ function initRoomsPage() {
     "WHITE HOUSE": {
       image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "A luxurious beachfront cottage with panoramic ocean views and premium amenities.",
-      capacity: "Up to 6 guests",
+      capacity: "Up to 18-25 guests",
       price: "₱30,000",
-      bestFor: "Families, groups",
+      bestFor: "Large families, reunions, barkada",
       location: "Beachfront",
-      amenities: ["Private balcony", "Ocean view", "King-size bed", "Air conditioning", "Kitchenette", "Free WiFi"]
+      amenities: ["Private balcony", "Ocean view", "King-size bed", "Hot & cold shower", "Pool access", "Air conditioning", "Kitchenette", "Free WiFi"]
     },
     "PENTHOUSE": {
       image: "https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Our most exclusive accommodation with 360-degree views and premium luxury features.",
-      capacity: "Up to 4 guests",
+      capacity: "Up to 12-15 guests",
       price: "₱12,800",
-      bestFor: "Couples, luxury travelers",
+      bestFor: "Barkada, small events, luxury travelers",
       location: "Top floor",
-      amenities: ["Private rooftop terrace", "Jacuzzi", "Premium linens", "Smart TV", "Mini bar", "Concierge service"]
+      amenities: ["Ocean view", "Private terrace", "Hot & cold shower", "Air conditioning", "Free WiFi", "Pool access"]
     },
     "AQUA CLASS": {
       image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Modern cottage with direct pool access and contemporary design elements.",
-      capacity: "Up to 4 guests",
+      capacity: "Up to 12-15 guests",
       price: "₱11,800",
-      bestFor: "Couples, small families",
+      bestFor: "Families, groups",
       location: "Poolside",
-      amenities: ["Direct pool access", "Contemporary design", "Queen-size bed", "Private patio", "Coffee maker", "Smart TV"]
+      amenities: ["Direct pool access", "Air conditioning", " Lounge area", "Free WiFi", "Smart TV"]
     },
     "HEARTSUITE": {
       image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Romantic suite designed for couples with special touches and intimate atmosphere.",
-      capacity: "2 guests",
+      capacity: "Up to 12-15 guests",
       price: "₱11,800",
-      bestFor: "Couples, honeymooners",
+      bestFor: "Friends, group",
       location: "Garden view",
-      amenities: ["Romantic decor", "King-size bed", "Private garden", "Champagne on arrival", "Bathrobes", "Special turndown service"]
+      amenities: ["Air conditioning", "King-size bed", "Lounge area", "Free WiFi", "Mini fridge", "Pool access"]
     },
     "STEPH'S SKYLOUNGE 842/844": {
       image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Spacious interconnected rooms perfect for families or groups traveling together.",
-      capacity: "Up to 8 guests",
+      capacity: "Up to 10-12 guests",
       price: "₱11,800",
       bestFor: "Families, groups",
       location: "Upper floor with ocean view",
-      amenities: ["Interconnected rooms", "Ocean view balcony", "Two bathrooms", "Sofa bed", "Dining area", "Coffee station"]
+      amenities: ["Wide window view", "Air conditioning", "Hot & cold shower", "Free WiFi", "Dining area", "Pool access"]
     },
     "STEPH'S 846": {
       image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Comfortable cottage with modern amenities and convenient access to resort facilities.",
-      capacity: "Up to 3 guests",
+      capacity: "Up to 8-10 guests",
       price: "₱10,000",
-      bestFor: "Solo travelers, couples",
+      bestFor: "Solo travelers, small group",
       location: "Central resort area",
-      amenities: ["Queen-size bed", "Desk area", "Mini fridge", "Coffee maker", "Free WiFi", "Resort access"]
+      amenities: ["Queen-size bed", "Air conditioning", "Hot & cold shower", "Free WiFi", "Dining area", "Pool access"]
     },
     "STEPH'S 848": {
       image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Cozy cottage with garden views and comfortable furnishings for a relaxing stay.",
-      capacity: "Up to 3 guests",
+      capacity: "Up to 8-10 guests",
       price: "₱10,800",
-      bestFor: "Solo travelers, couples",
-      location: "Garden view",
-      amenities: ["Queen-size bed", "Garden view", "Sitting area", "Mini fridge", "Coffee maker", "Free WiFi"]
+      bestFor: "Solo travelers, small groups",
+      location: "Main resort",
+      amenities: ["Queen-size bed", "Air conditioning", "Hot & cold shower", "Free WiFi", "Dining area", "Pool access"]
     },
     "DE LUXE": {
       image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Premium accommodation with upgraded amenities and stylish interior design.",
-      capacity: "Up to 4 guests",
+      capacity: "Up to 8-10 guests",
       price: "₱8,800",
-      bestFor: "Couples, small families",
+      bestFor: "friends, small families",
       location: "Beachfront",
-      amenities: ["Ocean view", "King-size bed", "Sofa bed", "Premium toiletries", "Nespresso machine", "Smart TV"]
+      amenities: ["Air conditioning", "Hot & cold shower", "Free WiFi", "Dining area", "Pool access", "Premium bedding"]
     },
     "BEATRICE A": {
       image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       description: "Charming cottage with traditional design elements and modern comforts.",
-      capacity: "Up to 4 guests",
+      capacity: "Up to 6-8 guests",
       price: "₱7,800",
       bestFor: "Couples, small families",
-      location: "Garden area",
+      location: "Ground floor",
       amenities: ["Traditional design", "Queen-size bed", "Private veranda", "Ceiling fan", "Mini fridge", "Coffee maker"]
     },
     "BEATRICE B": {
