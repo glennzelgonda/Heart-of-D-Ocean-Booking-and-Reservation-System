@@ -70,22 +70,6 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Promo slide close functionality
-const closePromo = document.getElementById('closePromo');
-const promoSlide = document.getElementById('promoSlide');
-
-if (closePromo && promoSlide) {
-  closePromo.addEventListener('click', () => {
-    promoSlide.classList.add('hidden');
-    localStorage.setItem('promoClosed', 'true');
-  });
-
-  // Check if promo was previously closed
-  if (localStorage.getItem('promoClosed') === 'true') {
-    promoSlide.classList.add('hidden');
-  }
-}
-
 // Lightbox functionality for gallery images
 function initLightbox() {
   const images = document.querySelectorAll('.masonry img, .grid img');
