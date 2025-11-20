@@ -3,41 +3,45 @@ const menuBtn = document.getElementById('menuBtn');
 const mainNav = document.getElementById('mainNav');
 const closeMenu = document.getElementById('closeMenu');
 
-menuBtn.addEventListener('click', () => {
-  mainNav.classList.add('active');
-});
+if (menuBtn && mainNav && closeMenu) {
+  menuBtn.addEventListener('click', () => {
+    mainNav.classList.add('active');
+  });
 
-closeMenu.addEventListener('click', () => {
-  mainNav.classList.remove('active');
-});
-
-// Close menu when clicking on links
-const navLinks = document.querySelectorAll('.nav a');
-navLinks.forEach(link => {
-  link.addEventListener('click', () => {
+  closeMenu.addEventListener('click', () => {
     mainNav.classList.remove('active');
   });
-});
+
+  // Close menu when clicking on links
+  const navLinks = document.querySelectorAll('.nav a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+  });
+}
 
 // Dark mode toggle
 const darkToggle = document.getElementById('darkToggle');
 
-darkToggle.addEventListener('click', () => {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
-  document.documentElement.setAttribute('data-theme', newTheme);
-  darkToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-  
-  // Save preference to localStorage
-  localStorage.setItem('theme', newTheme);
-});
+if (darkToggle) {
+  darkToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    darkToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    
+    // Save preference to localStorage
+    localStorage.setItem('theme', newTheme);
+  });
 
-// Check for saved theme preference
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  darkToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  // Check for saved theme preference
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    darkToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  }
 }
 
 // Active page indicator
@@ -57,10 +61,12 @@ function setActivePage() {
 // Scroll effect for header
 window.addEventListener('scroll', () => {
   const header = document.querySelector('.site-header');
-  if (window.scrollY > 50) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
+  if (header) {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
   }
 });
 
@@ -247,7 +253,7 @@ function processBookingAndGCash() {
   // Save booking to localStorage
   const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
   bookings.push(formData);
-  localStorage.setItem('bookings', JSON.stringify(books));
+  localStorage.setItem('bookings', JSON.stringify(bookings));
   
   // Clear draft
   localStorage.removeItem('bookingDraft');
@@ -465,6 +471,231 @@ function showMessage(message, type = 'info') {
   }
 }
 
+// ========== ROOMS PAGE MODAL FUNCTIONALITY ==========
+function initRoomsPage() {
+  const modal = document.getElementById('cottageModal');
+  const modalImage = document.querySelector('.modal-image');
+  const modalTitle = document.querySelector('.modal-title');
+  const modalDescription = document.querySelector('.modal-description');
+  const modalCapacity = document.querySelector('.modal-capacity');
+  const modalPrice = document.querySelector('.modal-price');
+  const modalBestFor = document.querySelector('.modal-bestfor');
+  const modalLocation = document.querySelector('.modal-location');
+  const modalAmenitiesList = document.querySelector('.modal-amenities-list');
+  const closeModalBtn = document.querySelector('.close-modal');
+  const modalTriggers = document.querySelectorAll('.image-modal-trigger');
+
+  // Cottage data for the modal - COMPLETE VERSION
+  const cottageData = {
+    "WHITE HOUSE": {
+      image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "A luxurious beachfront cottage with panoramic ocean views and premium amenities.",
+      capacity: "Up to 6 guests",
+      price: "₱30,000",
+      bestFor: "Families, groups",
+      location: "Beachfront",
+      amenities: ["Private balcony", "Ocean view", "King-size bed", "Air conditioning", "Kitchenette", "Free WiFi"]
+    },
+    "PENTHOUSE": {
+      image: "https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Our most exclusive accommodation with 360-degree views and premium luxury features.",
+      capacity: "Up to 4 guests",
+      price: "₱12,800",
+      bestFor: "Couples, luxury travelers",
+      location: "Top floor",
+      amenities: ["Private rooftop terrace", "Jacuzzi", "Premium linens", "Smart TV", "Mini bar", "Concierge service"]
+    },
+    "AQUA CLASS": {
+      image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Modern cottage with direct pool access and contemporary design elements.",
+      capacity: "Up to 4 guests",
+      price: "₱11,800",
+      bestFor: "Couples, small families",
+      location: "Poolside",
+      amenities: ["Direct pool access", "Contemporary design", "Queen-size bed", "Private patio", "Coffee maker", "Smart TV"]
+    },
+    "HEARTSUITE": {
+      image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Romantic suite designed for couples with special touches and intimate atmosphere.",
+      capacity: "2 guests",
+      price: "₱11,800",
+      bestFor: "Couples, honeymooners",
+      location: "Garden view",
+      amenities: ["Romantic decor", "King-size bed", "Private garden", "Champagne on arrival", "Bathrobes", "Special turndown service"]
+    },
+    "STEPH'S SKYLOUNGE 842/844": {
+      image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Spacious interconnected rooms perfect for families or groups traveling together.",
+      capacity: "Up to 8 guests",
+      price: "₱11,800",
+      bestFor: "Families, groups",
+      location: "Upper floor with ocean view",
+      amenities: ["Interconnected rooms", "Ocean view balcony", "Two bathrooms", "Sofa bed", "Dining area", "Coffee station"]
+    },
+    "STEPH'S 846": {
+      image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Comfortable cottage with modern amenities and convenient access to resort facilities.",
+      capacity: "Up to 3 guests",
+      price: "₱10,000",
+      bestFor: "Solo travelers, couples",
+      location: "Central resort area",
+      amenities: ["Queen-size bed", "Desk area", "Mini fridge", "Coffee maker", "Free WiFi", "Resort access"]
+    },
+    "STEPH'S 848": {
+      image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Cozy cottage with garden views and comfortable furnishings for a relaxing stay.",
+      capacity: "Up to 3 guests",
+      price: "₱10,800",
+      bestFor: "Solo travelers, couples",
+      location: "Garden view",
+      amenities: ["Queen-size bed", "Garden view", "Sitting area", "Mini fridge", "Coffee maker", "Free WiFi"]
+    },
+    "DE LUXE": {
+      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Premium accommodation with upgraded amenities and stylish interior design.",
+      capacity: "Up to 4 guests",
+      price: "₱8,800",
+      bestFor: "Couples, small families",
+      location: "Beachfront",
+      amenities: ["Ocean view", "King-size bed", "Sofa bed", "Premium toiletries", "Nespresso machine", "Smart TV"]
+    },
+    "BEATRICE A": {
+      image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Charming cottage with traditional design elements and modern comforts.",
+      capacity: "Up to 4 guests",
+      price: "₱7,800",
+      bestFor: "Couples, small families",
+      location: "Garden area",
+      amenities: ["Traditional design", "Queen-size bed", "Private veranda", "Ceiling fan", "Mini fridge", "Coffee maker"]
+    },
+    "BEATRICE B": {
+      image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Comfortable cottage with garden access and relaxing atmosphere.",
+      capacity: "Up to 4 guests",
+      price: "₱6,800",
+      bestFor: "Couples, small families",
+      location: "Garden area",
+      amenities: ["Garden access", "Queen-size bed", "Private seating area", "Ceiling fan", "Mini fridge", "Coffee maker"]
+    },
+    "CONCIERGE 815/819": {
+      image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Interconnected rooms with premium concierge service and exclusive amenities.",
+      capacity: "Up to 6 guests",
+      price: "₱8,800",
+      bestFor: "Families, business travelers",
+      location: "Main building",
+      amenities: ["Interconnected rooms", "Concierge service", "Work desk", "Premium linens", "Coffee station", "Free WiFi"]
+    },
+    "CONCIERGE 817": {
+      image: "https://images.unsplash.com/photo-1591088398332-8a7791972843?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Premium room with dedicated concierge service and business-friendly amenities.",
+      capacity: "Up to 3 guests",
+      price: "₱9,800",
+      bestFor: "Business travelers, couples",
+      location: "Main building",
+      amenities: ["Concierge service", "Work desk", "Premium linens", "Coffee maker", "Mini bar", "Free WiFi"]
+    },
+    "PREMIUM 838": {
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Upgraded accommodation with premium features and stylish design.",
+      capacity: "Up to 4 guests",
+      price: "₱7,800",
+      bestFor: "Couples, small families",
+      location: "Beach view",
+      amenities: ["Beach view", "King-size bed", "Sofa bed", "Premium toiletries", "Coffee maker", "Smart TV"]
+    },
+    "PREMIUM 840": {
+      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Spacious premium cottage with modern amenities and comfortable living space.",
+      capacity: "Up to 4 guests",
+      price: "₱8,800",
+      bestFor: "Couples, small families",
+      location: "Beach view",
+      amenities: ["Beach view", "King-size bed", "Sitting area", "Premium toiletries", "Coffee maker", "Smart TV"]
+    },
+    "GIANT KUBO": {
+      image: "https://images.unsplash.com/photo-1586375300773-8384e3e4916f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Traditional Filipino-style cottage with modern amenities and spacious layout.",
+      capacity: "Up to 8 guests",
+      price: "₱6,800",
+      bestFor: "Large families, groups",
+      location: "Garden area",
+      amenities: ["Traditional design", "Spacious layout", "Multiple beds", "Private bathroom", "Dining area", "Garden view"]
+    },
+    "SEASIDE (WHOLE)": {
+      image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Complete seaside cottage with direct beach access and panoramic ocean views.",
+      capacity: "Up to 6 guests",
+      price: "₱6,800",
+      bestFor: "Families, groups",
+      location: "Beachfront",
+      amenities: ["Direct beach access", "Ocean view", "Multiple bedrooms", "Full kitchen", "Living area", "Private terrace"]
+    },
+    "SEASIDE (HALF)": {
+      image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Cozy seaside accommodation with beach proximity and comfortable amenities.",
+      capacity: "Up to 4 guests",
+      price: "₱3,400",
+      bestFor: "Couples, small families",
+      location: "Beachfront",
+      amenities: ["Beach proximity", "Ocean view", "Queen-size bed", "Kitchenette", "Private balcony", "Free WiFi"]
+    },
+    "BAMBOO KUBO": {
+      image: "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      description: "Authentic bamboo cottage offering a traditional Filipino experience with modern comforts.",
+      capacity: "Up to 4 guests",
+      price: "₱2,800",
+      bestFor: "Couples, cultural experience seekers",
+      location: "Garden area",
+      amenities: ["Traditional bamboo construction", "Queen-size bed", "Private bathroom", "Ceiling fan", "Mini fridge", "Garden view"]
+    }
+  };
+
+  // Open modal when cottage card is clicked
+  modalTriggers.forEach(trigger => {
+    trigger.addEventListener('click', function() {
+      const cottageName = this.getAttribute('data-cottage');
+      const cottage = cottageData[cottageName];
+      
+      if (cottage) {
+        modalImage.src = cottage.image;
+        modalImage.alt = cottageName;
+        modalTitle.textContent = cottageName;
+        modalDescription.textContent = cottage.description;
+        modalCapacity.textContent = cottage.capacity;
+        modalPrice.textContent = cottage.price;
+        modalBestFor.textContent = cottage.bestFor;
+        modalLocation.textContent = cottage.location;
+        
+        // Clear and populate amenities list
+        modalAmenitiesList.innerHTML = '';
+        cottage.amenities.forEach(amenity => {
+          const li = document.createElement('li');
+          li.textContent = amenity;
+          modalAmenitiesList.appendChild(li);
+        });
+        
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  // Close modal
+  closeModalBtn.addEventListener('click', function() {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  });
+
+  // Close modal when clicking outside
+  window.addEventListener('click', function(event) {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  });
+}
+
 // Page-specific initialization
 function initPageSpecificFeatures() {
   const currentPage = window.location.pathname.split('/').pop();
@@ -475,6 +706,10 @@ function initPageSpecificFeatures() {
   
   if (currentPage === 'gallery.html') {
     initLightbox();
+  }
+  
+  if (currentPage === 'rooms.html') {
+    initRoomsPage();
   }
 }
 
