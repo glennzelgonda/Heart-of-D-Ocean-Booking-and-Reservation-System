@@ -413,6 +413,8 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   margin-bottom: 2rem;
+  padding: 1.5rem;  
+  
 }
 
 .grid img {
