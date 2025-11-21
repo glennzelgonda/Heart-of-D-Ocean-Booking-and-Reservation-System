@@ -1,0 +1,45 @@
+[2025-11-20 18:04:28] INITIAL - To: marjhonmatalog278@gmail.com
+Subject: Booking Received
+Message: Dear Marjhon, your booking RESORT1763658268585 received!
+--------------------------------------------------
+
+[2025-11-20 18:05:59] STATUS: confirmed
+To: marjhonmatalog278@gmail.com
+Subject: 🎉 Booking CONFIRMED - Heart Of D' Ocean Beach Resort
+Message:
+Dear Marjhon,
+
+Your booking has been CONFIRMED!
+
+Booking ID: RESORT1763658268585
+Cottage: Premium 838 — ₱7,800
+Check-in: 2025-11-26
+Guests: 3
+
+We're excited to welcome you!
+--------------------------------------------------
+
+[2025-11-20 18:17:07] STATUS: confirmed
+To: marjhonmatalog278@gmail.com
+Subject: 🎉 Booking CONFIRMED - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-20 18:32:48] STATUS: cancelled
+To: marjhonmatalog278@gmail.com
+Subject: Booking Update - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 07:35:02] STATUS: cancelled
+To: marjhonmatalog278@gmail.com
+Subject: Booking Update - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 07:35:06] STATUS: cancelled
+To: marjhonmatalog278@gmail.com
+Subject: Booking Update - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
