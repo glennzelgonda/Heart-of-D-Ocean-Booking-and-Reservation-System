@@ -1,0 +1,4 @@
+[2025-11-22 08:54:39] PHPMailer FAILED | To: marjhonmatalog278@gmail.com | Error: SMTP Error: Could not authenticate.
+[2025-11-22 09:00:16] SUCCESS: Email sent to marjhonmatalog278@gmail.com
+[2025-11-22 09:04:20] SUCCESS: Email sent to bralphlorenz13@gmail.com
+[2025-11-22 09:15:10] SUCCESS: Email sent to jenielynmcasas@gmail.com

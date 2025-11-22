@@ -2,13 +2,19 @@
 session_start();
 include '../config.php';
 
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 if (!isset($_SESSION['admin_logged_in'])) {
     header("Location: login.php");
     exit();
 }
 
-// Auto-refresh every 5 seconds
-header("Refresh: 5");
+// Generate CSRF token if not exists
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
 // Get bookings from database
 try {
@@ -59,6 +65,16 @@ try {
 } catch(PDOException $exception) {
     $error = "Database error: " . $exception->getMessage();
 }
+
+// Set default values to prevent undefined variable errors
+$totalBookings = $totalBookings ?? 0;
+$pendingBookings = $pendingBookings ?? 0;
+$confirmedBookings = $confirmedBookings ?? 0;
+$cancelledBookings = $cancelledBookings ?? 0;
+$recentBookings = $recentBookings ?? 0;
+$monthlyData = $monthlyData ?? [];
+$popularRooms = $popularRooms ?? [];
+$bookings = $bookings ?? [];
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,7 +86,7 @@ try {
         .admin-header { background: white; padding: 1rem 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
         .admin-header h1 { color: #667eea; }
         .header-info { display: flex; align-items: center; gap: 1rem; }
-        .auto-refresh-info { color: #666; font-size: 0.9rem; background: #e3f2fd; padding: 0.5rem 1rem; border-radius: 20px; }
+        .auto-refresh-info { color: #666; font-size: 0.9rem; background: #e3f2fd; padding: 0.5rem 1rem; border-radius: 20px; display: none; } /* Hidden */
         .logout-btn { background: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; text-decoration: none; }
         .container { max-width: 1400px; margin: 2rem auto; padding: 0 20px; }
         
@@ -88,12 +104,12 @@ try {
         
         /* Charts */
         .chart-bar { background: #667eea; height: 20px; margin: 5px 0; border-radius: 10px; transition: width 0.3s; }
-        .chart-label { display: flex; justify-content: between; margin-bottom: 5px; }
+        .chart-label { display: flex; justify-content: space-between; margin-bottom: 5px; }
         .chart-month { flex: 1; }
         .chart-count { font-weight: bold; color: #667eea; }
         
         /* Popular Rooms */
-        .room-item { display: flex; justify-content: between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+        .room-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
         .room-name { flex: 1; }
         .room-count { background: #667eea; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; }
         
@@ -106,6 +122,7 @@ try {
         .btn { padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer; margin: 2px; font-size: 0.9rem; }
         .btn-confirm { background: #28a745; color: white; }
         .btn-cancel { background: #dc3545; color: white; }
+        .btn-revert { background: #ffc107; color: black; }
         .btn:hover { opacity: 0.9; }
         .no-bookings { text-align: center; padding: 3rem; color: #666; background: white; border-radius: 10px; }
         .last-update { text-align: center; color: #666; margin-bottom: 1rem; font-size: 0.9rem; }
@@ -117,15 +134,20 @@ try {
         .tab.active { background: #667eea; color: white; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
+
+        /* Manual refresh button */
+        .refresh-btn { background: #667eea; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-left: 1rem; }
+        .refresh-btn:hover { background: #5a6fd8; }
+        
+        /* Action buttons container */
+        .action-buttons { display: flex; gap: 5px; flex-wrap: wrap; }
     </style>
 </head>
 <body>
     <div class="admin-header">
         <h1>Admin Dashboard - Analytics & Bookings</h1>
         <div class="header-info">
-            <div class="auto-refresh-info">
-                🔄 Auto-refreshing every 5 seconds
-            </div>
+            <button class="refresh-btn" onclick="window.location.reload()">🔄 Refresh</button>
             <a href="logout.php" class="logout-btn">Logout</a>
         </div>
     </div>
@@ -215,7 +237,7 @@ try {
                 <div class="no-bookings">
                     <h3>No bookings yet</h3>
                     <p>When customers submit bookings, they will appear here automatically.</p>
-                    <p><small>Page refreshes every 5 seconds</small></p>
+                    <p><small>Click the refresh button to check for new bookings</small></p>
                 </div>
             <?php else: ?>
                 <table>
@@ -248,20 +270,42 @@ try {
                             </td>
                             <td><?php echo date('M j, Y g:i A', strtotime($booking['timestamp'])); ?></td>
                             <td>
-                                <?php if ($booking['status'] === 'pending'): ?>
-                                <form method="POST" action="process_booking.php" style="display: inline;">
-                                    <input type="hidden" name="booking_id" value="<?php echo $booking['booking_id']; ?>">
-                                    <input type="hidden" name="status" value="confirmed">
-                                    <button type="submit" class="btn btn-confirm" onclick="return confirm('Confirm this booking?')">Confirm</button>
-                                </form>
-                                <form method="POST" action="process_booking.php" style="display: inline;">
-                                    <input type="hidden" name="booking_id" value="<?php echo $booking['booking_id']; ?>">
-                                    <input type="hidden" name="status" value="cancelled">
-                                    <button type="submit" class="btn btn-cancel" onclick="return confirm('Cancel this booking?')">Cancel</button>
-                                </form>
-                                <?php else: ?>
-                                    <em>No actions</em>
-                                <?php endif; ?>
+                                <div class="action-buttons">
+                                    <?php if ($booking['status'] === 'pending'): ?>
+                                    <form method="POST" action="process_booking.php" style="display: inline;">
+                                        <input type="hidden" name="booking_id" value="<?php echo $booking['booking_id']; ?>">
+                                        <input type="hidden" name="status" value="confirmed">
+                                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                                        <button type="submit" class="btn btn-confirm" onclick="return confirm('Confirm this booking?')">Confirm</button>
+                                    </form>
+                                    <form method="POST" action="process_booking.php" style="display: inline;">
+                                        <input type="hidden" name="booking_id" value="<?php echo $booking['booking_id']; ?>">
+                                        <input type="hidden" name="status" value="cancelled">
+                                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                                        <button type="submit" class="btn btn-cancel" onclick="return confirm('Cancel this booking?')">Cancel</button>
+                                    </form>
+                                    <?php elseif ($booking['status'] === 'confirmed'): ?>
+                                    <form method="POST" action="process_booking.php" style="display: inline;">
+                                        <input type="hidden" name="booking_id" value="<?php echo $booking['booking_id']; ?>">
+                                        <input type="hidden" name="status" value="cancelled">
+                                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                                        <button type="submit" class="btn btn-cancel" onclick="return confirm('Cancel this confirmed booking?')">Cancel</button>
+                                    </form>
+                                    <form method="POST" action="process_booking.php" style="display: inline;">
+                                        <input type="hidden" name="booking_id" value="<?php echo $booking['booking_id']; ?>">
+                                        <input type="hidden" name="status" value="pending">
+                                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                                        <button type="submit" class="btn btn-revert" onclick="return confirm('Revert to pending status?')">Revert to Pending</button>
+                                    </form>
+                                    <?php elseif ($booking['status'] === 'cancelled'): ?>
+                                    <form method="POST" action="process_booking.php" style="display: inline;">
+                                        <input type="hidden" name="booking_id" value="<?php echo $booking['booking_id']; ?>">
+                                        <input type="hidden" name="status" value="pending">
+                                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                                        <button type="submit" class="btn btn-revert" onclick="return confirm('Reactivate this cancelled booking?')">Reactivate</button>
+                                    </form>
+                                    <?php endif; ?>
+                                </div>
                             </td>
                         </tr>
                         <?php endforeach; ?>

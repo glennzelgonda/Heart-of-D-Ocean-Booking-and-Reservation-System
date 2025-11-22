@@ -1,6 +1,5 @@
 <?php
-session_start();
-session_destroy();
+// /heart-ocean-resort/admin/index.php
 header("Location: login.php");
 exit();
 ?>
