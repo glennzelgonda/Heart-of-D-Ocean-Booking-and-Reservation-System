@@ -1,50 +1,68 @@
-// Mobile menu functionality
-const menuBtn = document.getElementById('menuBtn');
-const mainNav = document.getElementById('mainNav');
-const closeMenu = document.getElementById('closeMenu');
+// ========== LOADING ANIMATION FUNCTIONALITY ==========
+function initLoadingAnimation() {
+  const loadingSpinner = document.createElement('div');
+  loadingSpinner.className = 'loading-spinner';
+  loadingSpinner.innerHTML = '<div class="spinner"></div>';
+  document.body.appendChild(loadingSpinner);
 
-if (menuBtn && mainNav && closeMenu) {
-  menuBtn.addEventListener('click', () => {
-    mainNav.classList.add('active');
-  });
-
-  closeMenu.addEventListener('click', () => {
-    mainNav.classList.remove('active');
-  });
-
-  // Close menu when clicking on links
-  const navLinks = document.querySelectorAll('.nav a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mainNav.classList.remove('active');
-    });
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      loadingSpinner.classList.add('hidden');
+      const mainContent = document.querySelector('main');
+      if (mainContent) {
+        mainContent.classList.add('fade-in');
+      }
+    }, 1000);
   });
 }
 
-// Dark mode toggle
-const darkToggle = document.getElementById('darkToggle');
+// ========== MOBILE MENU FUNCTIONALITY ==========
+function initMobileMenu() {
+  const menuBtn = document.getElementById('menuBtn');
+  const mainNav = document.getElementById('mainNav');
+  const closeMenu = document.getElementById('closeMenu');
 
-if (darkToggle) {
-  darkToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    darkToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-    
-    // Save preference to localStorage
-    localStorage.setItem('theme', newTheme);
-  });
+  if (menuBtn && mainNav && closeMenu) {
+    menuBtn.addEventListener('click', () => {
+      mainNav.classList.add('active');
+    });
 
-  // Check for saved theme preference
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    darkToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    closeMenu.addEventListener('click', () => {
+      mainNav.classList.remove('active');
+    });
+
+    const navLinks = document.querySelectorAll('.nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('active');
+      });
+    });
   }
 }
 
-// Active page indicator
+// ========== DARK MODE TOGGLE ==========
+function initDarkMode() {
+  const darkToggle = document.getElementById('darkToggle');
+
+  if (darkToggle) {
+    darkToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      darkToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('theme', newTheme);
+    });
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      darkToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    }
+  }
+}
+
+// ========== ACTIVE PAGE INDICATOR ==========
 function setActivePage() {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   const navLinks = document.querySelectorAll('.nav a');
@@ -58,67 +76,85 @@ function setActivePage() {
   });
 }
 
-// Scroll effect for header
-window.addEventListener('scroll', () => {
-  const header = document.querySelector('.site-header');
-  if (header) {
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
+// ========== SCROLL EFFECT FOR HEADER ==========
+function initScrollEffect() {
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('.site-header');
+    if (header) {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
     }
-  }
-});
-
-// Lightbox functionality for gallery images
-function initLightbox() {
-  const images = document.querySelectorAll('.masonry img, .grid img');
-  
-  images.forEach(img => {
-    img.addEventListener('click', function() {
-      openLightbox(this.src, this.alt);
-    });
   });
 }
 
-function openLightbox(imageSrc, imageAlt) {
+// ========== ENHANCED LIGHTBOX FUNCTIONALITY ==========
+function initLightbox() {
+  const images = document.querySelectorAll('.masonry img, .grid img, .gallery-preview img');
+  
+  images.forEach((img, index) => {
+    img.addEventListener('click', function() {
+      openLightbox(this.src, this.alt, index);
+    });
+    img.setAttribute('loading', 'lazy');
+  });
+}
+
+function openLightbox(imageSrc, imageAlt, currentIndex) {
   const lightbox = document.createElement('div');
-  lightbox.className = 'lightbox';
+  lightbox.className = 'lightbox-enhanced';
   lightbox.style.cssText = `
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.95);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10000;
-    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   `;
-  
+
+  const lightboxContent = document.createElement('div');
+  lightboxContent.className = 'lightbox-content';
+  lightboxContent.style.cssText = `
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `;
+
   const img = document.createElement('img');
   img.src = imageSrc;
   img.alt = imageAlt;
   img.style.cssText = `
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 100%;
+    max-height: 90vh;
     border-radius: 10px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    cursor: default;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    cursor: grab;
+    transition: transform 0.3s ease;
   `;
-  
-  const closeBtn = document.createElement('button');
-  closeBtn.textContent = '✕';
-  closeBtn.style.cssText = `
+
+  const prevBtn = document.createElement('button');
+  prevBtn.innerHTML = '‹';
+  prevBtn.className = 'lightbox-nav lightbox-prev';
+  prevBtn.style.cssText = `
     position: absolute;
-    top: 20px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.5);
+    left: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
     border: none;
     color: white;
-    font-size: 2rem;
+    font-size: 2.5rem;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -126,331 +162,165 @@ function openLightbox(imageSrc, imageAlt) {
     display: flex;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
   `;
-  
-  lightbox.appendChild(img);
+
+  const nextBtn = document.createElement('button');
+  nextBtn.innerHTML = '›';
+  nextBtn.className = 'lightbox-nav lightbox-next';
+  nextBtn.style.cssText = `
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  `;
+
+  const closeBtn = document.createElement('button');
+  closeBtn.innerHTML = '✕';
+  closeBtn.className = 'lightbox-close';
+  closeBtn.style.cssText = `
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10001;
+  `;
+
+  const imageCounter = document.createElement('div');
+  imageCounter.className = 'lightbox-counter';
+  imageCounter.style.cssText = `
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background: rgba(0,0,0,0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+  `;
+
+  const allImages = document.querySelectorAll('.masonry img, .grid img, .gallery-preview img');
+  imageCounter.textContent = `${currentIndex + 1} / ${allImages.length}`;
+
+  lightboxContent.appendChild(img);
+  lightboxContent.appendChild(prevBtn);
+  lightboxContent.appendChild(nextBtn);
+  lightbox.appendChild(lightboxContent);
   lightbox.appendChild(closeBtn);
-  
-  closeBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    lightbox.remove();
+  lightbox.appendChild(imageCounter);
+  document.body.appendChild(lightbox);
+
+  setTimeout(() => {
+    lightbox.style.opacity = '1';
+  }, 10);
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.opacity = '0';
+    setTimeout(() => {
+      lightbox.remove();
+    }, 300);
   });
-  
+
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) {
-      lightbox.remove();
+      lightbox.style.opacity = '0';
+      setTimeout(() => {
+        lightbox.remove();
+      }, 300);
     }
   });
-  
-  document.body.appendChild(lightbox);
-}
-// ========== GCASH PAYMENT INTEGRATION ==========
-function initBookingPage() {
-  const bookingForm = document.getElementById('bookingForm');
-  const saveDraftBtn = document.getElementById('saveDraft');
-  
-  // Load draft if exists
-  loadDraft();
-  
-  // Set minimum date to today
-  const dateInput = document.getElementById('date');
-  if (dateInput) {
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.min = today;
+
+  function navigate(direction) {
+    let newIndex = currentIndex + direction;
+    if (newIndex < 0) newIndex = allImages.length - 1;
+    if (newIndex >= allImages.length) newIndex = 0;
+    
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = allImages[newIndex].src;
+      img.alt = allImages[newIndex].alt;
+      imageCounter.textContent = `${newIndex + 1} / ${allImages.length}`;
+      img.style.opacity = '1';
+      currentIndex = newIndex;
+    }, 200);
   }
-  
-  // Handle URL parameters for pre-filled room selection
-  const urlParams = new URLSearchParams(window.location.search);
-  const roomParam = urlParams.get('room');
-  if (roomParam && document.getElementById('room')) {
-    const roomSelect = document.getElementById('room');
-    for (let i = 0; i < roomSelect.options.length; i++) {
-      if (roomSelect.options[i].text.includes(roomParam)) {
-        roomSelect.selectedIndex = i;
-        break;
-      }
+
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navigate(-1);
+  });
+
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navigate(1);
+  });
+
+  function handleKeydown(e) {
+    if (e.key === 'Escape') {
+      closeBtn.click();
+    } else if (e.key === 'ArrowLeft') {
+      navigate(-1);
+    } else if (e.key === 'ArrowRight') {
+      navigate(1);
     }
   }
-  
-  // Save draft functionality
-  if (saveDraftBtn) {
-    saveDraftBtn.addEventListener('click', saveDraft);
-  }
-  
-  // Form submission - DIRECT TO GCASH
-  if (bookingForm) {
-    bookingForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      // DIRECT TO GCASH AGAD
-      processBookingAndGCash();
-    });
-  }
-}
 
-function saveDraft() {
-  const formData = {
-    name: document.getElementById('name').value,
-    email: document.getElementById('email').value,
-    phone: document.getElementById('phone').value,
-    room: document.getElementById('room').value,
-    date: document.getElementById('date').value,
-    guests: document.getElementById('guests').value
-  };
-  
-  localStorage.setItem('bookingDraft', JSON.stringify(formData));
-  showMessage('Draft saved! You can continue later.', 'success');
-}
+  document.addEventListener('keydown', handleKeydown);
 
-function loadDraft() {
-  const draft = localStorage.getItem('bookingDraft');
-  if (draft) {
-    const formData = JSON.parse(draft);
-    Object.keys(formData).forEach(key => {
-      const element = document.getElementById(key);
-      if (element && formData[key]) {
-        element.value = formData[key];
+  lightbox.addEventListener('close', () => {
+    document.removeEventListener('keydown', handleKeydown);
+  });
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  lightboxContent.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  lightboxContent.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+    
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        navigate(1);
+      } else {
+        navigate(-1);
       }
-    });
-  }
-}
-
-// DIRECT PROCESS TO GCASH
-function processBookingAndGCash() {
-  // Validate form first
-  if (!validateForm()) {
-    showMessage('Please fill in all required fields.', 'error');
-    return;
-  }
-  
-  const formData = {
-    name: document.getElementById('name').value,
-    email: document.getElementById('email').value,
-    phone: document.getElementById('phone').value,
-    room: document.getElementById('room').value,
-    date: document.getElementById('date').value,
-    guests: document.getElementById('guests').value,
-    timestamp: new Date().toISOString(),
-    bookingId: 'RESORT' + Date.now()
-  };
-  
-  // Save booking to localStorage
-  const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-  bookings.push(formData);
-  localStorage.setItem('bookings', JSON.stringify(bookings));
-  
-  // Clear draft
-  localStorage.removeItem('bookingDraft');
-  
-  // DIRECT TO GCASH - NO MESSAGE, NO DELAY
-  openGCashPayment(formData);
-}
-
-function validateForm() {
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const phone = document.getElementById('phone').value;
-  const date = document.getElementById('date').value;
-  
-  if (!name || !email || !phone || !date) {
-    return false;
-  }
-  
-  return true;
-}
-
-function openGCashPayment(bookingData) {
-  const amount = calculateGCashAmount(bookingData.room, bookingData.guests);
-  
-  // Open GCash window immediately
-  const gcashWindow = window.open('', 'GCash Payment', 'width=500,height=700,scrollbars=yes');
-  
-  gcashWindow.document.write(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>GCash Payment - Heart Of D' Ocean Beach Resort</title>
-      <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        body { 
-          font-family: 'Arial', sans-serif; 
-          padding: 20px; 
-          text-align: center;
-          background: linear-gradient(135deg, #0033A0, #0070BA);
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .gcash-container {
-          background: white;
-          padding: 30px;
-          border-radius: 20px;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-          max-width: 400px;
-          width: 100%;
-        }
-        .gcash-logo { 
-          color: #0033A0; 
-          font-size: 2.5em; 
-          font-weight: bold;
-          margin-bottom: 20px;
-        }
-        .amount { 
-          font-size: 3em; 
-          color: #0033A0; 
-          margin: 20px 0;
-          font-weight: bold;
-        }
-        .details {
-          text-align: left;
-          margin: 25px 0;
-          padding: 20px;
-          background: #f8f9fa;
-          border-radius: 12px;
-          border-left: 4px solid #0033A0;
-        }
-        .details p {
-          margin: 8px 0;
-          color: #333;
-        }
-        .qr-container {
-          background: #fff;
-          padding: 25px;
-          border: 3px dashed #0033A0;
-          border-radius: 15px;
-          margin: 20px 0;
-        }
-        .qr-placeholder {
-          font-size: 4em;
-          margin: 10px 0;
-        }
-        .btn { 
-          background: #0033A0; 
-          color: white; 
-          padding: 15px 30px; 
-          border: none; 
-          border-radius: 25px; 
-          font-size: 1.1em; 
-          cursor: pointer;
-          margin: 10px;
-          font-weight: bold;
-          width: 200px;
-        }
-        .btn.success { 
-          background: #28a745; 
-        }
-        .btn.cancel { 
-          background: #6c757d; 
-        }
-        .instruction {
-          color: #666;
-          font-size: 0.9em;
-          margin: 15px 0;
-        }
-      </style>
-    </head>
-    <body>
-      <div class="gcash-container">
-        <div class="gcash-logo">GCash</div>
-        <h2>Payment Request</h2>
-        <div class="amount">₱${amount.toLocaleString()}</div>
-        
-        <div class="details">
-          <p><strong>Merchant:</strong> Heart Of D' Ocean Beach Resort</p>
-          <p><strong>Booking For:</strong> ${bookingData.name}</p>
-          <p><strong>Package:</strong> ${bookingData.room.split('—')[0].trim()}</p>
-          <p><strong>Check-in:</strong> ${bookingData.date}</p>
-          <p><strong>Guests:</strong> ${bookingData.guests}</p>
-          <p><strong>Reference ID:</strong> ${bookingData.bookingId}</p>
-        </div>
-        
-        <p class="instruction">Scan QR code below to pay</p>
-        
-        <div class="qr-container">
-          <div class="qr-placeholder">📱</div>
-          <div style="font-size: 0.8em; color: #666; margin-top: 10px;">
-            GCash QR Code<br>
-            <small>Point your GCash app to scan</small>
-          </div>
-        </div>
-        
-        <p class="instruction">Or enter mobile number: <strong>0917-123-4567</strong></p>
-        
-        <div style="margin-top: 25px;">
-          <button class="btn success" onclick="paySuccess()">💳 Simulate Payment</button>
-          <button class="btn cancel" onclick="window.close()">❌ Cancel</button>
-        </div>
-      </div>
-      
-      <script>
-        function paySuccess() {
-          const successData = {
-            payment: 'success',
-            booking: ${JSON.stringify(bookingData)},
-            amount: ${amount},
-            transactionId: 'GC' + Date.now()
-          };
-          
-          alert('💰 Payment Successful!\\\\n\\\\nAmount: ₱${amount.toLocaleString()}\\\\nReference: ${bookingData.bookingId}\\\\n\\\\nThank you for your booking!');
-          
-          // Send success message back to main window
-          if (window.opener && !window.opener.closed) {
-            window.opener.postMessage(successData, '*');
-          }
-          
-          window.close();
-        }
-      </script>
-    </body>
-    </html>
-  `);
-}
-
-function calculateGCashAmount(room, guests) {
-  const prices = {
-    'Cottage A — ₱4,000': 4000,
-    'Cottage B — ₱2,500': 2500,
-    'Day Trip — ₱1,200': 1200 * parseInt(guests || 1)
-  };
-  return prices[room] || 0;
-}
-
-// Handle payment success from GCash window
-window.addEventListener('message', function(event) {
-  if (event.data && event.data.payment === 'success') {
-    // Show success message on main page
-    showMessage('🎉 Payment successful! Your booking is confirmed. We\'ve sent a confirmation email.', 'success');
-    
-    // Update booking status
-    const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-    const lastBooking = bookings[bookings.length - 1];
-    if (lastBooking) {
-      lastBooking.paymentStatus = 'paid';
-      lastBooking.transactionId = event.data.transactionId;
-      localStorage.setItem('bookings', JSON.stringify(bookings));
     }
-    
-    // Show confirmation details
-    setTimeout(() => {
-      alert(`🏝️ Booking Confirmed!\\n\\nName: ${event.data.booking.name}\\nAmount: ₱${event.data.amount.toLocaleString()}\\nReference: ${event.data.booking.bookingId}\\n\\nThank you for choosing Heart Of D' Ocean!`);
-    }, 1000);
-  }
-});
-
-function showMessage(message, type = 'info') {
-  const formMessage = document.getElementById('formMessage');
-  if (formMessage) {
-    formMessage.textContent = message;
-    formMessage.className = type === 'success' ? 'success-message' : 'muted';
-    formMessage.style.display = 'block';
-    
-    setTimeout(() => {
-      formMessage.style.display = 'none';
-    }, 5000);
   }
 }
 
@@ -468,34 +338,34 @@ function initRoomsPage() {
   const closeModalBtn = document.querySelector('.close-modal');
   const modalTriggers = document.querySelectorAll('.image-modal-trigger');
 
-  // Cottage data for the modal - COMPLETE VERSION
+  // Cottage Data
   const cottageData = {
     "WHITE HOUSE": {
       image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      description: "A luxurious beachfront cottage with panoramic ocean views and premium amenities.",
+      description: "A luxurious beachfront cottage with panoramic ocean views and premium amenities. Perfect for large gatherings and special occasions.",
       capacity: "Up to 18-25 guests",
-      price: "₱30,000",
+      price: "₱30,000/night",
       bestFor: "Large families, reunions, barkada",
       location: "Beachfront",
-      amenities: ["Private balcony", "Ocean view", "King-size bed", "Hot & cold shower", "Pool access", "Air conditioning", "Kitchenette", "Free WiFi"]
+      amenities: ["Private balcony", "Ocean view", "5 Bedrooms", "3 Bathrooms", "Hot & cold shower", "Air conditioning", "Full kitchen", "Living area", "Free WiFi", "Pool access"]
     },
     "PENTHOUSE": {
       image: "https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      description: "Our most exclusive accommodation with 360-degree views and premium luxury features.",
+      description: "Our most exclusive accommodation with 360-degree views and premium luxury features. Top-floor luxury experience.",
       capacity: "Up to 12-15 guests",
-      price: "₱12,800",
+      price: "₱12,800/night",
       bestFor: "Barkada, small events, luxury travelers",
       location: "Top floor",
-      amenities: ["Ocean view", "Private terrace", "Hot & cold shower", "Air conditioning", "Free WiFi", "Pool access"]
+      amenities: ["360-degree ocean view", "Private terrace", "3 Bedrooms", "2 Bathrooms", "Hot & cold shower", "Air conditioning", "Mini bar", "Free WiFi", "Pool access"]
     },
     "AQUA CLASS": {
       image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-      description: "Modern cottage with direct pool access and contemporary design elements.",
+      description: "Modern cottage with direct pool access and contemporary design elements. Perfect for water lovers.",
       capacity: "Up to 12-15 guests",
-      price: "₱11,800",
-      bestFor: "Families, groups",
+      price: "₱11,800/night",
+      bestFor: "Families, groups, pool lovers",
       location: "Poolside",
-      amenities: ["Direct pool access", "Air conditioning", " Lounge area", "Free WiFi", "Smart TV"]
+      amenities: ["Direct pool access", "3 Bedrooms", "2 Bathrooms", "Air conditioning", "Lounge area", "Free WiFi", "Smart TV", "Mini fridge"]
     },
     "HEARTSUITE": {
       image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
@@ -650,7 +520,6 @@ function initRoomsPage() {
         modalBestFor.textContent = cottage.bestFor;
         modalLocation.textContent = cottage.location;
         
-        // Clear and populate amenities list
         modalAmenitiesList.innerHTML = '';
         cottage.amenities.forEach(amenity => {
           const li = document.createElement('li');
@@ -665,10 +534,12 @@ function initRoomsPage() {
   });
 
   // Close modal
-  closeModalBtn.addEventListener('click', function() {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-  });
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+  }
 
   // Close modal when clicking outside
   window.addEventListener('click', function(event) {
@@ -679,9 +550,568 @@ function initRoomsPage() {
   });
 }
 
-// Page-specific initialization
+// ========== FEATURED COTTAGES FUNCTIONALITY ==========
+function initFeaturedCottages() {
+  const viewDetailsBtns = document.querySelectorAll('.view-details');
+  
+  viewDetailsBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const cottageName = this.getAttribute('data-cottage');
+      // Redirect to rooms page or show modal
+      window.location.href = 'rooms.html';
+    });
+  });
+}
+
+// ========== BOOKING PAGE FUNCTIONALITY ==========
+function initBookingPage() {
+  const bookingForm = document.getElementById('bookingForm');
+  const checkinInput = document.getElementById('checkin');
+  const checkoutInput = document.getElementById('checkout');
+  const accommodationSelect = document.getElementById('accommodation');
+  const adultsInput = document.getElementById('adults');
+  const childrenInput = document.getElementById('children');
+
+  // Set minimum date to today
+  const today = new Date().toISOString().split('T')[0];
+  if (checkinInput) checkinInput.min = today;
+  if (checkoutInput) checkoutInput.min = today;
+
+  // Update checkout min date when checkin changes
+  if (checkinInput) {
+    checkinInput.addEventListener('change', function() {
+      if (this.value) {
+        checkoutInput.min = this.value;
+        if (checkoutInput.value && checkoutInput.value < this.value) {
+          checkoutInput.value = '';
+        }
+      }
+      calculatePrice();
+    });
+  }
+
+  // Calculate price when any input changes
+  [checkinInput, checkoutInput, accommodationSelect, adultsInput, childrenInput].forEach(element => {
+    if (element) {
+      element.addEventListener('change', calculatePrice);
+    }
+  });
+
+  // Form submission
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (validateBookingForm()) {
+        processBooking();
+      }
+    });
+  }
+
+  // Add Check Availability button
+  addCheckAvailabilityButton();
+
+  // Initial price calculation
+  calculatePrice();
+}
+
+// ADD CHECK AVAILABILITY BUTTON
+function addCheckAvailabilityButton() {
+  const formActions = document.querySelector('.form-actions');
+  if (formActions && !document.querySelector('.check-availability-btn')) {
+    const checkAvailabilityBtn = document.createElement('button');
+    checkAvailabilityBtn.type = 'button';
+    checkAvailabilityBtn.className = 'btn secondary check-availability-btn';
+    checkAvailabilityBtn.textContent = 'Check Availability';
+    checkAvailabilityBtn.addEventListener('click', checkAvailability);
+    
+    formActions.insertBefore(checkAvailabilityBtn, formActions.firstChild);
+  }
+}
+
+// CHECK AVAILABILITY FUNCTION
+function checkAvailability() {
+  const checkin = document.getElementById('checkin')?.value;
+  const checkout = document.getElementById('checkout')?.value;
+  const accommodation = document.getElementById('accommodation')?.value;
+
+  if (!checkin || !checkout || !accommodation) {
+    showMessage('Please fill in check-in, check-out dates and select accommodation first.', 'error');
+    return;
+  }
+
+  // Simulate availability check (in real app, this would call an API)
+  const isAvailable = Math.random() > 0.3; // 70% chance of availability for demo
+  
+  if (isAvailable) {
+    showMessage('✅ This accommodation is available for your selected dates! You can proceed with booking.', 'success');
+  } else {
+    showMessage('❌ Sorry, this accommodation is not available for your selected dates. Please try different dates or another cottage.', 'error');
+  }
+}
+
+function calculatePrice() {
+  const checkin = document.getElementById('checkin')?.value;
+  const checkout = document.getElementById('checkout')?.value;
+  const accommodation = document.getElementById('accommodation');
+  const priceBreakdown = document.getElementById('priceBreakdown');
+  
+  if (!checkin || !checkout || !accommodation?.value) {
+    if (priceBreakdown) priceBreakdown.classList.remove('show');
+    return;
+  }
+
+  // Calculate number of nights
+  const checkinDate = new Date(checkin);
+  const checkoutDate = new Date(checkout);
+  const timeDiff = checkoutDate - checkinDate;
+  const nights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  
+  if (nights <= 0) {
+    if (priceBreakdown) priceBreakdown.classList.remove('show');
+    return;
+  }
+
+  // Get accommodation price
+  const selectedOption = accommodation.options[accommodation.selectedIndex];
+  const pricePerNight = parseInt(selectedOption.getAttribute('data-price')) || 0;
+  
+  // Calculate total
+  let total = pricePerNight * nights;
+  
+  // Update price breakdown
+  if (document.getElementById('accommodationPrice')) {
+    document.getElementById('accommodationPrice').textContent = `₱${pricePerNight.toLocaleString()}`;
+    document.getElementById('nightsCount').textContent = `${nights} night${nights > 1 ? 's' : ''}`;
+    document.getElementById('totalAmount').textContent = `₱${total.toLocaleString()}`;
+    
+    if (priceBreakdown) priceBreakdown.classList.add('show');
+  }
+}
+
+function validateBookingForm() {
+  const checkin = document.getElementById('checkin')?.value;
+  const checkout = document.getElementById('checkout')?.value;
+  const accommodation = document.getElementById('accommodation')?.value;
+  const adults = document.getElementById('adults')?.value;
+  const name = document.getElementById('name')?.value;
+  const email = document.getElementById('email')?.value;
+  const phone = document.getElementById('phone')?.value;
+  const paymentMethod = document.getElementById('paymentMethod')?.value;
+
+  if (!checkin || !checkout || !accommodation || !adults || !name || !email || !phone || !paymentMethod) {
+    showMessage('Please fill in all required fields.', 'error');
+    return false;
+  }
+
+  const checkinDate = new Date(checkin);
+  const checkoutDate = new Date(checkout);
+  
+  if (checkoutDate <= checkinDate) {
+    showMessage('Check-out date must be after check-in date.', 'error');
+    return false;
+  }
+
+  // Validate GCash payment details
+  if (paymentMethod === 'pay-now') {
+    const gcashName = document.getElementById('gcashName')?.value;
+    const gcashNumber = document.getElementById('gcashNumber')?.value;
+    const paymentReference = document.getElementById('paymentReference')?.value;
+    const paymentDate = document.getElementById('paymentDate')?.value;
+    const receiptFile = document.getElementById('receiptUpload')?.files[0];
+
+    if (!gcashName || !gcashNumber || !paymentReference || !paymentDate || !receiptFile) {
+      showMessage('Please fill in all GCash payment details and upload receipt.', 'error');
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// ========== NEW PAYMENT SYSTEM ==========
+function togglePaymentOption() {
+  const paymentMethod = document.getElementById('paymentMethod').value;
+  const qrSection = document.getElementById('qrSection');
+  const totalAmount = calculateTotalAmount();
+  
+  if (paymentMethod === 'pay-now') {
+    if (qrSection) qrSection.style.display = 'block';
+    if (document.getElementById('qrAmount')) {
+      document.getElementById('qrAmount').textContent = `₱${totalAmount.toLocaleString()}`;
+    }
+    if (document.getElementById('qrReference')) {
+      document.getElementById('qrReference').textContent = 'RESORT' + Date.now().toString().slice(-6);
+    }
+  } else {
+    if (qrSection) qrSection.style.display = 'none';
+  }
+}
+
+function processBooking() {
+  // Validate form first
+  if (!validateBookingForm()) return;
+
+  const paymentMethod = document.getElementById('paymentMethod').value;
+  
+  if (!paymentMethod) {
+    showMessage('Please select payment method.', 'error');
+    return;
+  }
+
+  const formData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    accommodation: document.getElementById('accommodation').value,
+    checkin: document.getElementById('checkin').value,
+    checkout: document.getElementById('checkout').value,
+    adults: document.getElementById('adults').value,
+    children: document.getElementById('children').value,
+    paymentMethod: paymentMethod,
+    timestamp: new Date().toISOString(),
+    bookingId: 'RESORT' + Date.now().toString().slice(-6),
+    amount: calculateTotalAmount(),
+    paymentStatus: paymentMethod === 'pay-now' ? 'pending' : 'face-to-face'
+  };
+
+  // Handle GCash payment details
+  if (paymentMethod === 'pay-now') {
+    const receiptFile = document.getElementById('receiptUpload')?.files[0];
+    if (!receiptFile) {
+      showMessage('Please upload your GCash receipt screenshot.', 'error');
+      return;
+    }
+    
+    formData.receiptFile = receiptFile.name;
+    formData.paymentDetails = {
+      gcashName: document.getElementById('gcashName').value,
+      gcashNumber: document.getElementById('gcashNumber').value,
+      paymentReference: document.getElementById('paymentReference').value,
+      paymentDate: document.getElementById('paymentDate').value,
+      bookingReference: formData.bookingId
+    };
+  }
+
+  // Save to localStorage
+  const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+  bookings.push(formData);
+  localStorage.setItem('bookings', JSON.stringify(bookings));
+
+  // Show success message
+  showBookingSuccess(formData);
+}
+
+function calculateTotalAmount() {
+  const accommodation = document.getElementById('accommodation');
+  if (!accommodation) return 0;
+  
+  const selectedOption = accommodation.options[accommodation.selectedIndex];
+  const pricePerNight = parseInt(selectedOption.getAttribute('data-price')) || 0;
+  
+  const checkin = document.getElementById('checkin')?.value;
+  const checkout = document.getElementById('checkout')?.value;
+  
+  if (!checkin || !checkout) return pricePerNight;
+  
+  const checkinDate = new Date(checkin);
+  const checkoutDate = new Date(checkout);
+  const timeDiff = checkoutDate - checkinDate;
+  const nights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  
+  return pricePerNight * nights;
+}
+
+function formatCottageName(cottageValue) {
+  const cottageNames = {
+    'white-house': 'White House',
+    'penthouse': 'Penthouse',
+    'aqua-class': 'Aqua Class',
+    'heartsuite': 'Heartsuite',
+    'stephs-skylounge': 'Steph\'s Skylounge',
+    'stephs-848': 'Steph\'s 848',
+    'stephs-846': 'Steph\'s 846',
+    'concierge-817': 'Concierge 817',
+    'de-luxe': 'De Luxe',
+    'concierge-815-819': 'Concierge 815/819',
+    'premium-840': 'Premium 840',
+    'beatrice-a': 'Beatrice A',
+    'premium-838': 'Premium 838',
+    'giant-kubo': 'Giant Kubo',
+    'seaside-whole': 'Seaside (Whole)',
+    'beatrice-b': 'Beatrice B',
+    'seaside-half': 'Seaside (Half)',
+    'bamboo-kubo': 'Bamboo Kubo',
+  };
+  
+  return cottageNames[cottageValue] || cottageValue;
+}
+
+function showBookingSuccess(bookingData) {
+  let paymentInfoHTML = '';
+  
+  if (bookingData.paymentMethod === 'pay-now' && bookingData.paymentDetails) {
+    paymentInfoHTML = `
+      <div class="payment-confirmation">
+        <h4>Payment Details Received</h4>
+        <div class="payment-details">
+          <p><strong>GCash Name:</strong> ${bookingData.paymentDetails.gcashName}</p>
+          <p><strong>GCash Number:</strong> ${bookingData.paymentDetails.gcashNumber}</p>
+          <p><strong>Payment Reference:</strong> ${bookingData.paymentDetails.paymentReference}</p>
+          <p><strong>Payment Date:</strong> ${new Date(bookingData.paymentDetails.paymentDate).toLocaleString()}</p>
+          <p><strong>Booking Reference:</strong> ${bookingData.paymentDetails.bookingReference}</p>
+        </div>
+        <p>We will verify your payment and please check your Email for confirmation. Thank you.</p>
+      </div>
+    `;
+  }
+
+  const successHTML = `
+    <div class="booking-success" id="bookingSuccess">
+      <div class="success-icon">✅</div>
+      <h3>Booking Submitted Successfully!</h3>
+      
+      <div class="booking-details">
+        <p><strong>Reference Number:</strong> ${bookingData.bookingId}</p>
+        <p><strong>Name:</strong> ${bookingData.name}</p>
+        <p><strong>Cottage:</strong> ${formatCottageName(bookingData.accommodation)}</p>
+        <p><strong>Check-in:</strong> ${bookingData.checkin}</p>
+        <p><strong>Check-out:</strong> ${bookingData.checkout}</p>
+        <p><strong>Total Amount:</strong> ₱${bookingData.amount.toLocaleString()}</p>
+      </div>
+
+      ${paymentInfoHTML}
+
+      ${bookingData.paymentMethod === 'face-to-face' ? `
+        <div class="next-steps">
+          <h4>Next Steps for Face-to-Face Payment:</h4>
+          <p>Please pay upon check-in. Your booking is reserved for 24 hours.</p>
+          <p><strong>Bring your reference number:</strong> ${bookingData.bookingId}</p>
+        </div>
+      ` : ''}
+
+      <div class="action-buttons">
+
+        <a href="index.html" class="btn secondary">Back to Home</a>
+      </div>
+    </div>
+  `;
+
+  // Replace form with success message
+  const bookingForm = document.getElementById('bookingForm');
+  if (bookingForm) {
+    bookingForm.innerHTML = successHTML;
+    
+    // AUTO-SCROLL TO TOP after a short delay
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      
+      // Optional: Highlight the success message
+      const successElement = document.getElementById('bookingSuccess');
+      if (successElement) {
+        successElement.style.animation = 'pulse 2s ease-in-out';
+      }
+    }, 300);
+  }
+}
+// ========== CONTACT FORM FUNCTIONALITY ==========
+function initContactForm() {
+  const contactForm = document.getElementById('contactForm');
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value,
+        timestamp: new Date().toISOString()
+      };
+      
+      const contacts = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+      contacts.push(formData);
+      localStorage.setItem('contactMessages', JSON.stringify(contacts));
+      
+      showMessage('✅ Thank you for your message! We\'ll get back to you within 24 hours.', 'success');
+      contactForm.reset();
+    });
+  }
+}
+
+// ========== FAQ FUNCTIONALITY ==========
+function initFAQ() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  
+  // FAQ toggle functionality
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    question.addEventListener('click', () => {
+      // Close other open items
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item && otherItem.classList.contains('active')) {
+          otherItem.classList.remove('active');
+        }
+      });
+      
+      // Toggle current item
+      item.classList.toggle('active');
+    });
+  });
+  
+  // Category filter functionality
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.getAttribute('data-category');
+      
+      // Update active button
+      categoryBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Filter FAQ items
+      faqItems.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+// ========== FOOTER LINKS - COMPLETELY FIXED ==========
+function initFooterLinks() {
+  console.log('Initializing footer links...');
+  
+  // Remove any problematic links and replace with working ones
+  const footerLinks = document.querySelectorAll('.footer-col a');
+  
+  footerLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    
+    // Fix broken payment, cancellation, terms links
+    if (href === 'payment.html') {
+      link.setAttribute('href', 'faq.html#payment');
+      console.log('Fixed payment link');
+    }
+    else if (href === 'cancellation.html') {
+      link.setAttribute('href', 'faq.html#cancellation');
+      console.log('Fixed cancellation link');
+    }
+    else if (href === 'terms.html') {
+      link.setAttribute('href', 'faq.html#terms');
+      console.log('Fixed terms link');
+    }
+  });
+  
+  // Handle FAQ anchor links with proper navigation
+  const faqAnchorLinks = document.querySelectorAll('a[href*="faq.html#"]');
+  
+  faqAnchorLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      console.log('FAQ anchor link clicked:', href);
+      
+      // Allow default navigation to happen normally
+      // The browser will handle the FAQ page loading and anchor scrolling
+    });
+  });
+  
+  // Handle page load with anchor - IMPROVED
+  if (window.location.hash && window.location.pathname.includes('faq.html')) {
+    setTimeout(() => {
+      const targetId = window.location.hash.substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        console.log('Scrolling to target:', targetId);
+        
+        // More reliable scrolling with offset for header
+        const headerHeight = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        
+        // Highlight the section
+        targetElement.style.backgroundColor = 'rgba(10, 132, 255, 0.1)';
+        setTimeout(() => {
+          targetElement.style.backgroundColor = '';
+        }, 3000);
+      }
+    }, 1000);
+  }
+  
+  console.log('Footer links completely fixed and ready');
+}
+
+// ========== UTILITY FUNCTIONS ==========
+function showMessage(message, type = 'success') {
+  // Remove existing messages
+  const existingMessage = document.querySelector('.success-message, .error-message');
+  if (existingMessage) {
+    existingMessage.remove();
+  }
+
+  const messageDiv = document.createElement('div');
+  messageDiv.className = type === 'success' ? 'success-message' : 'error-message';
+  messageDiv.textContent = message;
+  messageDiv.style.cssText = `
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    ${type === 'success' ? 
+      'background: #d4edda; color: #155724; border: 1px solid #c3e6cb;' : 
+      'background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;'
+    }
+  `;
+  
+  const bookingForm = document.getElementById('bookingForm');
+  if (bookingForm) {
+    bookingForm.insertBefore(messageDiv, bookingForm.firstChild);
+  }
+
+  setTimeout(() => {
+    messageDiv.remove();
+  }, 5000);
+}
+
+// Handle payment success from GCash window
+window.addEventListener('message', function(event) {
+  if (event.data && event.data.payment === 'success') {
+    showMessage('🎉 Payment successful! Your booking is confirmed. We\'ve sent a confirmation email.', 'success');
+    
+    const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+    const lastBooking = bookings[bookings.length - 1];
+    if (lastBooking) {
+      lastBooking.paymentStatus = 'paid';
+      lastBooking.transactionId = event.data.transactionId;
+      localStorage.setItem('bookings', JSON.stringify(bookings));
+    }
+    
+    setTimeout(() => {
+      alert(`🏝️ Booking Confirmed!\\n\\nName: ${event.data.booking.name}\\nAmount: ₱${event.data.amount.toLocaleString()}\\nReference: ${event.data.booking.bookingId}\\n\\nThank you for choosing Heart Of D' Ocean!`);
+    }, 1000);
+  }
+});
+
+// ========== PAGE-SPECIFIC INITIALIZATION ==========
 function initPageSpecificFeatures() {
-  const currentPage = window.location.pathname.split('/').pop();
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  
+  console.log('Current page:', currentPage);
   
   if (currentPage === 'booking.html') {
     initBookingPage();
@@ -694,13 +1124,31 @@ function initPageSpecificFeatures() {
   if (currentPage === 'rooms.html') {
     initRoomsPage();
   }
+  
+  if (currentPage === 'index.html') {
+    initFeaturedCottages();
+  }
+  
+  if (currentPage === 'contact.html') {
+    initContactForm();
+  }
+  
+  if (currentPage === 'faq.html') {
+    initFAQ();
+  }
+  
+  // Initialize footer links on all pages
+  initFooterLinks();
 }
 
-// Initialize everything when page loads
+// ========== INITIALIZE EVERYTHING ==========
 document.addEventListener('DOMContentLoaded', function() {
+  initLoadingAnimation();
+  initMobileMenu();
+  initDarkMode();
   setActivePage();
+  initScrollEffect();
   initPageSpecificFeatures();
   
-  console.log('🏝️ Heart Of D\' Ocean Beach Resort website loaded successfully!');
+  console.log('❤️ Heart Of D\' Ocean Beach Resort website loaded successfully!');
 });
-
