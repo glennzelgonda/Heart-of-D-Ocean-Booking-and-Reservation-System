@@ -865,8 +865,10 @@ main {
   border-radius: 15px;
 }
 
+/*sa rooms*/
+
 .cards {
-  display: grid;
+  display:grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin: 3rem 0;
@@ -1071,6 +1073,67 @@ main .container h1::after {
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 8px;
   margin-bottom: 25px;
+}
+/* ========== HORIZONTAL GALLERY STYLES ========== */
+.modal-gallery {
+  padding: 15px;
+  background: var(--card);
+  border-bottom: 1px solid rgba(10, 132, 255, 0.1);
+}
+
+.gallery-title {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.gallery-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) rgba(10, 132, 255, 0.1);
+}
+
+.gallery-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.gallery-scroll::-webkit-scrollbar-track {
+  background: rgba(10, 132, 255, 0.1);
+  border-radius: 4px;
+}
+
+.gallery-scroll::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+.gallery-item {
+  flex: 0 0 auto;
+  width: 120px;
+  height: 80px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.gallery-item:hover, 
+.gallery-item.active {
+  opacity: 1;
+  border-color: var(--accent);
+}
+
+.gallery-item img, 
+.gallery-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .modal-amenities-list li {
