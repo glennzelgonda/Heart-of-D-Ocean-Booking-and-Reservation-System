@@ -64,13 +64,13 @@ function initDarkMode() {
 
 // ========== ACTIVE PAGE INDICATOR ==========
 function setActivePage() {
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPage = window.location.pathname.split('/').pop() || 'index.php';
   const navLinks = document.querySelectorAll('.nav a');
   
   navLinks.forEach(link => {
     link.classList.remove('active');
     const linkPage = link.getAttribute('href');
-    if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+    if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.php')) {
       link.classList.add('active');
     }
   });
@@ -755,7 +755,7 @@ function initFeaturedCottages() {
     btn.addEventListener('click', function() {
       const cottageName = this.getAttribute('data-cottage');
       // Redirect to rooms page or show modal
-      window.location.href = 'rooms.html';
+      window.location.href = 'rooms.php';
     });
   });
 }
@@ -1088,7 +1088,7 @@ function showBookingSuccess(bookingData) {
 
       <div class="action-buttons">
 
-        <a href="index.html" class="btn secondary">Back to Home</a>
+        <a href="index.php" class="btn secondary">Back to Home</a>
       </div>
     </div>
   `;
@@ -1194,22 +1194,22 @@ function initFooterLinks() {
     const href = link.getAttribute('href');
     
     // Fix broken payment, cancellation, terms links
-    if (href === 'payment.html') {
-      link.setAttribute('href', 'faq.html#payment');
+    if (href === 'payment.php') {
+      link.setAttribute('href', 'faq.php#payment');
       console.log('Fixed payment link');
     }
-    else if (href === 'cancellation.html') {
-      link.setAttribute('href', 'faq.html#cancellation');
+    else if (href === 'cancellation.php') {
+      link.setAttribute('href', 'faq.php#cancellation');
       console.log('Fixed cancellation link');
     }
-    else if (href === 'terms.html') {
-      link.setAttribute('href', 'faq.html#terms');
+    else if (href === 'terms.php') {
+      link.setAttribute('href', 'faq.php#terms');
       console.log('Fixed terms link');
     }
   });
   
   // Handle FAQ anchor links with proper navigation
-  const faqAnchorLinks = document.querySelectorAll('a[href*="faq.html#"]');
+  const faqAnchorLinks = document.querySelectorAll('a[href*="faq.php#"]');
   
   faqAnchorLinks.forEach(link => {
     link.addEventListener('click', function(e) {
@@ -1222,7 +1222,7 @@ function initFooterLinks() {
   });
   
   // Handle page load with anchor - IMPROVED
-  if (window.location.hash && window.location.pathname.includes('faq.html')) {
+  if (window.location.hash && window.location.pathname.includes('faq.php')) {
     setTimeout(() => {
       const targetId = window.location.hash.substring(1);
       const targetElement = document.getElementById(targetId);
@@ -1306,31 +1306,31 @@ window.addEventListener('message', function(event) {
 
 // ========== PAGE-SPECIFIC INITIALIZATION ==========
 function initPageSpecificFeatures() {
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPage = window.location.pathname.split('/').pop() || 'index.php';
   
   console.log('Current page:', currentPage);
   
-  if (currentPage === 'booking.html') {
+  if (currentPage === 'booking.php') {
     initBookingPage();
   }
   
-  if (currentPage === 'gallery.html') {
+  if (currentPage === 'gallery.php') {
     initLightbox();
   }
   
-  if (currentPage === 'rooms.html') {
+  if (currentPage === 'rooms.php') {
     initRoomsPage();
   }
   
-  if (currentPage === 'index.html') {
+  if (currentPage === 'index.php') {
     initFeaturedCottages();
   }
   
-  if (currentPage === 'contact.html') {
+  if (currentPage === 'contact.php') {
     initContactForm();
   }
   
-  if (currentPage === 'faq.html') {
+  if (currentPage === 'faq.php') {
     initFAQ();
   }
   
