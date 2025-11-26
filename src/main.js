@@ -353,14 +353,16 @@ function initRoomsPage() {
           "Air conditioning", "Full kitchen", "Living area", "Free WiFi", "Pool access"
         ],
         gallery: [
-          { type: "image", src: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-          { type: "image", src: "https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-          { type: "image", src: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
+          { type: "image", src: "images&vids/WhiteHouse.png" },
+          { type: "image", src: "images&vids/White1.jpg" },
+          { type: "image", src: "images&vids/White2.jpg" },
+          { type: "image", src: "images&vids/White3.jpg" },
+          { type: "video", src: "https://youtube.com/shorts/3LnorkSnZgU?si=bsnFhV0LZUhbrljE", thumbnail: "images&vids/WhiteHouse.png" }
         ]
       },
 
       "PENTHOUSE": {
-        image: "https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        image: "images&vids/PentHouse.jpg",
         description: "Our most exclusive accommodation with 360-degree views and premium luxury features. Top-floor luxury experience.",
         capacity: "Up to 12-15 guests",
         price: "₱12,800/night",
@@ -371,7 +373,7 @@ function initRoomsPage() {
           "Hot & cold shower", "Air conditioning", "Mini bar", "Free WiFi", "Pool access"
         ],
         gallery: [
-          { type: "image", src: "https://images.unsplash.com/photo-1564078516393-cf04bd966897?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+          { type: "image", src: "images&vids/PentHouse.jpg" },
           { type: "image", src: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
         ]
       },
@@ -388,7 +390,7 @@ function initRoomsPage() {
           "Lounge area", "Free WiFi", "Smart TV", "Mini fridge"
         ],
         gallery: [
-          { type: "image", src: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+          { type: "image", src: "images&vids/Aqua.jpg" },
           { type: "image", src: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
         ]
       },
@@ -410,7 +412,7 @@ function initRoomsPage() {
       },
 
       "STEPH'S SKYLOUNGE 842/844": {
-        image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        image: "images&vids/SkyLounge.png",
         description: "Spacious interconnected rooms perfect for families or groups traveling together.",
         capacity: "Up to 10-12 guests",
         price: "₱11,800",
@@ -421,7 +423,7 @@ function initRoomsPage() {
           "Free WiFi", "Dining area", "Pool access"
         ],
         gallery: [
-          { type: "image", src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
+          { type: "image", src: "images&vids/SkyLounge.png" }
         ]
       },
 
@@ -474,7 +476,7 @@ function initRoomsPage() {
       },
 
       "BEATRICE A": {
-        image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        image: "images&vids/BeatriceA.jpg",
         description: "Charming cottage with traditional design elements and modern comforts.",
         capacity: "Up to 6-8 guests",
         price: "₱7,800",
@@ -485,12 +487,12 @@ function initRoomsPage() {
           "Dining area", "Pool access", "Premium bedding"
         ],
         gallery: [
-          { type: "image", src: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
+          { type: "image", src: "images&vids/BeatriceA.jpg" }
         ]
       },
 
       "BEATRICE B": {
-        image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        image: "images&vids/BeatriceB.jpg",
         description: "Comfortable cottage with garden access and relaxing atmosphere.",
         capacity: "Up to 6-8 guests",
         price: "₱6,800",
@@ -501,7 +503,7 @@ function initRoomsPage() {
           "Dining area", "Pool access", "Premium bedding"
         ],
         gallery: [
-          { type: "image", src: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
+          { type: "image", src: "images&vids/BeatriceB.jpg" }
         ]
       },
 
@@ -549,7 +551,7 @@ function initRoomsPage() {
           "Free WiFi", "Pool access"
         ],
         gallery: [
-          { type: "image", src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
+          { type: "image", src: "images&vids/Premium838.jpg" }
         ]
       },
 
@@ -565,7 +567,7 @@ function initRoomsPage() {
           "Private bathroom", "Free WiFi", "Pool access"
         ],
         gallery: [
-          { type: "image", src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
+          { type: "image", src: "images&vids/Premium840.jpg" }
         ]
       },
 
@@ -585,7 +587,7 @@ function initRoomsPage() {
         ]
       },
       "SEASIDE (WHOLE)": {
-        image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        image: "images&vids/SeaSide.jpg",
         description: "Complete seaside cottage with direct beach access and panoramic ocean views.",
         capacity: "Up to 14-16 guests",
         price: "₱6,800",
@@ -595,12 +597,12 @@ function initRoomsPage() {
           "Seaside cottage", "Oceanfront", "Spacious seating", "Pool access"
         ],
         gallery: [
-          { type: "image", src: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
+          { type: "image", src: "images&vids/SeaSide.jpg" }
         ]
       },
 
       "SEASIDE (HALF)": {
-        image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        image: "images&vids/SeaSide.jpg",
         description: "Cozy seaside accommodation with beach proximity and comfortable amenities.",
         capacity: "Up to 8-10 guests",
         price: "₱3,400",
@@ -611,7 +613,7 @@ function initRoomsPage() {
           "Kitchenette", "Pool access"
         ],
         gallery: [
-          { type: "image", src: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
+          { type: "image", src: "images&vids/SeaSide.jpg" }
         ]
       },
 
