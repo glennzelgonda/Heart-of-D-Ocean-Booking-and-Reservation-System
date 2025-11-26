@@ -1,0 +1,178 @@
+[2025-11-20 18:04:28] INITIAL - To: marjhonmatalog278@gmail.com
+Subject: Booking Received
+Message: Dear Marjhon, your booking RESORT1763658268585 received!
+--------------------------------------------------
+
+[2025-11-20 18:05:59] STATUS: confirmed
+To: marjhonmatalog278@gmail.com
+Subject: 🎉 Booking CONFIRMED - Heart Of D' Ocean Beach Resort
+Message:
+Dear Marjhon,
+
+Your booking has been CONFIRMED!
+
+Booking ID: RESORT1763658268585
+Cottage: Premium 838 — ₱7,800
+Check-in: 2025-11-26
+Guests: 3
+
+We're excited to welcome you!
+--------------------------------------------------
+
+[2025-11-20 18:17:07] STATUS: confirmed
+To: marjhonmatalog278@gmail.com
+Subject: 🎉 Booking CONFIRMED - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-20 18:32:48] STATUS: cancelled
+To: marjhonmatalog278@gmail.com
+Subject: Booking Update - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 07:35:02] STATUS: cancelled
+To: marjhonmatalog278@gmail.com
+Subject: Booking Update - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 07:35:06] STATUS: cancelled
+To: marjhonmatalog278@gmail.com
+Subject: Booking Update - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 16:30:06] STATUS: pending
+To: marjhonmatalog278@gmail.com
+Subject: Booking Update - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 16:30:16] STATUS: pending
+To: marjhonmatalog278@gmail.com
+Subject: Booking Update - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 16:30:23] STATUS: pending
+To: marjhonmatalog278@gmail.com
+Subject: Booking Update - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 16:30:31] STATUS: pending
+To: marjhonmatalog278@gmail.com
+Subject: Booking Update - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 16:41:24] STATUS: confirmed
+To: marjhonmatalog@yahoo.com
+Subject: 🎉 Booking CONFIRMED - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 16:41:31] STATUS: pending
+To: marjhonmatalog@yahoo.com
+Subject: Booking Update - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 16:56:29] STATUS: confirmed
+To: marjhonmatalog@yahoo.com
+Subject: 🎉 Booking CONFIRMED - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 16:56:34] STATUS: pending
+To: marjhonmatalog@yahoo.com
+Subject: Booking Update - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 17:24:51] STATUS: confirmed
+To: marjhonmatalog@yahoo.com
+Subject: 🎉 Booking CONFIRMED - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 17:25:46] STATUS: pending
+To: marjhonmatalog@yahoo.com
+Subject: Booking Update - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 17:33:42] STATUS: confirmed
+To: mcpebrinehq@gmail.com
+Subject: 🎉 Booking CONFIRMED - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 17:35:32] STATUS: confirmed
+To: marjhonmatalog@gmail.com
+Subject: 🎉 Booking CONFIRMED - Heart Of D' Ocean Beach Resort
+Sent: NO
+--------------------------------------------------
+
+[2025-11-21 18:12:42] STATUS: confirmed | To: marjhonmatalog@yahoo.com | Subject: Booking CONFIRMED - Heart Of D' Ocean Beach Resort | Sent: NO
+[2025-11-21 18:21:11] STATUS: confirmed | To: MarjanOwie@gmail.com | Sent: NO
+[2025-11-21 18:30:52] STATUS: confirmed | To: 24-07711@g.batstate-u.edu.ph | Sent: NO
+[2025-11-22 08:54:39] STATUS: confirmed | To: marjhonmatalog278@gmail.com | Sent: NO
+[2025-11-22 09:00:16] STATUS: confirmed | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-22 09:04:20] STATUS: confirmed | To: bralphlorenz13@gmail.com | Sent: YES
+[2025-11-22 09:15:10] STATUS: confirmed | To: jenielynmcasas@gmail.com | Sent: YES
+[2025-11-22 10:07:49] STATUS: confirmed | To: 23-50990@g.batstate-u.edu.ph | Sent: YES
+[2025-11-22 11:10:46] STATUS: pending | To: 24-07711@g.batstate-u.edu.ph | Sent: YES
+[2025-11-22 11:10:49] STATUS: pending | To: 24-07711@g.batstate-u.edu.ph | Sent: YES
+[2025-11-22 11:11:10] STATUS: pending | To: 23-50990@g.batstate-u.edu.ph | Sent: YES
+[2025-11-22 11:11:13] STATUS: pending | To: jenielynmcasas@gmail.com | Sent: YES
+[2025-11-22 11:11:16] STATUS: pending | To: bralphlorenz13@gmail.com | Sent: YES
+[2025-11-22 11:11:24] STATUS: pending | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-22 11:11:35] STATUS: pending | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-22 11:11:42] STATUS: pending | To: MarjanOwie@gmail.com | Sent: YES
+[2025-11-22 11:11:50] STATUS: pending | To: mcpebrinehq@gmail.com | Sent: YES
+[2025-11-22 11:11:56] STATUS: pending | To: marjhonmatalog@yahoo.com | Sent: YES
+[2025-11-22 11:12:03] STATUS: pending | To: marjhonmatalog@gmail.com | Sent: YES
+[2025-11-22 11:12:10] STATUS: confirmed | To: 23-50990@g.batstate-u.edu.ph | Sent: YES
+[2025-11-22 11:13:14] STATUS: confirmed | To: jenielynmcasas@gmail.com | Sent: YES
+[2025-11-22 11:13:17] STATUS: confirmed | To: bralphlorenz13@gmail.com | Sent: YES
+[2025-11-22 11:13:20] STATUS: confirmed | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-22 11:13:43] STATUS: confirmed | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-22 11:14:13] STATUS: confirmed | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-22 11:14:16] STATUS: confirmed | To: 24-07711@g.batstate-u.edu.ph | Sent: YES
+[2025-11-22 11:14:19] STATUS: confirmed | To: MarjanOwie@gmail.com | Sent: YES
+[2025-11-22 11:14:37] STATUS: confirmed | To: mcpebrinehq@gmail.com | Sent: YES
+[2025-11-22 11:14:58] STATUS: confirmed | To: marjhonmatalog@yahoo.com | Sent: YES
+[2025-11-22 11:15:06] STATUS: confirmed | To: marjhonmatalog@gmail.com | Sent: YES
+2025-11-22 13:09:49 - Email to: marjhonmatalog@yahoo.com - Subject: Booking Received - Heart Of D Ocean Beach Resort - Sent: NO
+2025-11-22 13:09:51 - Email to: heartofdocean2005@yahoo.com - Subject: New Booking - RESORT1763813387342 - Sent: NO
+2025-11-22 13:10:46 - Email to: marjhonmatalog278@gmail.com - Subject: Booking Received - Heart Of D Ocean Beach Resort - Sent: NO
+2025-11-22 13:10:48 - Email to: heartofdocean2005@yahoo.com - Subject: New Booking - RESORT1763813444816 - Sent: NO
+[2025-11-22 13:13:07] STATUS: confirmed | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-25 13:30:48] STATUS: cancelled | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-25 13:30:52] STATUS: cancelled | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-25 13:30:55] STATUS: cancelled | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-25 13:31:05] STATUS: cancelled | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-25 13:31:15] STATUS: cancelled | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-25 15:04:51] STATUS:  | To: mcpebrinehq@gmail.com | Sent: YES
+[2025-11-25 15:32:30] STATUS:  | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-25 15:39:36] STATUS:  | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-25 15:40:18] STATUS:  | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-25 15:54:30] STATUS:  | To: marjhonmatalog278@gmail.com | Sent: YES
+2025-11-25 17:28:07 - Email to: 24-07711@g.batstate-u.edu.ph - Subject: Booking Received - Heart Of D Ocean Beach Resort - Sent: NO
+2025-11-25 17:28:09 - Email to: heartofdocean2005@yahoo.com - Subject: New Booking - RESORT1764088085974 - Sent: NO
+[2025-11-25 17:28:49] STATUS: confirmed | To: 24-07711@g.batstate-u.edu.ph | Sent: YES
+2025-11-25 17:44:15 - Email to: marjhonmatalog278@gmail.com - Subject: Booking Received - Heart Of D Ocean Beach Resort - Sent: NO
+2025-11-25 17:44:17 - Email to: heartofdocean2005@yahoo.com - Subject: New Booking - RESORT1764089053330 - Sent: NO
+[2025-11-25 17:44:30] STATUS: confirmed | To: marjhonmatalog278@gmail.com | Sent: YES
+2025-11-25 20:56:48 - Email to: marjhonmatalog278@gmail.com - Subject: Booking Received - Heart Of D Ocean Beach Resort - Sent: NO
+2025-11-25 20:56:50 - Email to: heartofdocean2005@yahoo.com - Subject: New Booking - RESORT1764100606862 - Sent: NO
+[2025-11-25 20:57:13] STATUS: confirmed | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-25 21:09:53] STATUS: pending | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-25 21:10:09] STATUS: confirmed | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-25 21:26:45] STATUS: confirmed | To: marjhonmatalog278@gmail.com | Sent: YES
+[2025-11-25 21:26:50] STATUS: confirmed | To: marjhonmatalog278@gmail.com | Sent: YES
+2025-11-25 21:54:01 - Email to: marjhonmatalog278@gmail.com - Subject: Booking Received - Heart Of D Ocean Beach Resort - Sent: NO
+2025-11-25 21:54:03 - Email to: heartofdocean2005@yahoo.com - Subject: New Booking - RESORT1764104039151 - Sent: NO
+[2025-11-25 21:54:17] STATUS: confirmed | To: marjhonmatalog278@gmail.com | Sent: YES

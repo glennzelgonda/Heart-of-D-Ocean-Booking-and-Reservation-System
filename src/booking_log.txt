@@ -1,0 +1,4 @@
+[2025-11-25 17:28:09] NEW BOOKING | ID: RESORT1764088085974 | Name: Mar Jhon Lowie Matalog_IT-2102_ER | Email: 24-07711@g.batstate-u.edu.ph | Room: Premium 840 — ₱8,800 | Nights: 1 | Total: ₱8800 | Email Sent: NO
+[2025-11-25 17:44:17] NEW BOOKING | ID: RESORT1764089053330 | Name: Marjhon | Email: marjhonmatalog278@gmail.com | Room: Seaside (Whole) — ₱6,800 | Nights: 1 | Total: ₱6800 | Email Sent: NO
+[2025-11-25 20:56:50] NEW BOOKING | ID: RESORT1764100606862 | Name: marjan | Email: marjhonmatalog278@gmail.com | Room: Aqua Class — ₱11,800 | Nights: 1 | Total: ₱11800 | Payment: face-to-face | Email Sent: NO
+[2025-11-25 21:54:03] NEW BOOKING | ID: RESORT1764104039151 | Name: MARJHON | Email: marjhonmatalog278@gmail.com | Room: Premium 840 — ₱8,800 | Nights: 1 | Total: ₱8800 | Payment: face-to-face | Email Sent: NO

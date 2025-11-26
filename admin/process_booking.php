@@ -19,18 +19,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
+    // Handle booking deletion - SOFT DELETE
+    if (isset($_POST['delete_booking'])) {
+        $bookingId = $_POST['booking_id'];
+        
+        try {
+            // Get booking details before deletion for logging
+            $query = "SELECT * FROM bookings WHERE booking_id = :booking_id";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(":booking_id", $bookingId);
+            $stmt->execute();
+            $booking = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            // SOFT DELETE: Mark as deleted instead of removing
+            $deleteQuery = "UPDATE bookings SET deleted = 1 WHERE booking_id = :booking_id";
+            $stmt = $db->prepare($deleteQuery);
+            $stmt->bindParam(":booking_id", $bookingId);
+            
+            if ($stmt->execute()) {
+                // Also remove from cottage_availability
+                $deleteAvailability = "DELETE FROM cottage_availability WHERE booking_id = :booking_id";
+                $stmt = $db->prepare($deleteAvailability);
+                $stmt->bindParam(":booking_id", $bookingId);
+                $stmt->execute();
+                
+                // Log the deletion
+                if ($booking) {
+                    $deleteLog = "[" . date('Y-m-d H:i:s') . "] DELETED: Booking ID: " . $bookingId . 
+                               " | Name: " . $booking['name'] . " | Email: " . $booking['email'] . 
+                               " | Cottage: " . $booking['room'] . " | Date: " . $booking['date'] . "\n";
+                    file_put_contents('../deletion_log.txt', $deleteLog, FILE_APPEND | LOCK_EX);
+                }
+                
+                $_SESSION['action_message'] = "Booking deleted successfully!";
+            }
+        } catch(PDOException $exception) {
+            $_SESSION['action_message'] = "Error deleting booking: " . $exception->getMessage();
+        }
+        
+        header("Location: dashboard.php");
+        exit();
+    }
+
+    // Handle status updates (existing code)
     $bookingId = $_POST['booking_id'];
     $newStatus = $_POST['status'];
     
     try {
-        $query = "UPDATE bookings SET status = :status WHERE booking_id = :booking_id";
+        $query = "UPDATE bookings SET status = :status WHERE booking_id = :booking_id AND deleted = 0";
         $stmt = $db->prepare($query);
         $stmt->bindParam(":status", $newStatus);
         $stmt->bindParam(":booking_id", $bookingId);
         
         if ($stmt->execute()) {
             // Get booking details for email
-            $query = "SELECT * FROM bookings WHERE booking_id = :booking_id";
+            $query = "SELECT * FROM bookings WHERE booking_id = :booking_id AND deleted = 0";
             $stmt = $db->prepare($query);
             $stmt->bindParam(":booking_id", $bookingId);
             $stmt->execute();

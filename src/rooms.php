@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/rooms.html
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -153,6 +154,43 @@
           <div class="room-body">
             <h3>BAMBOO KUBO</h3>
           </div>
+=======
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Cottages — Heart Of D' Ocean Beach Resort</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.php">Heart Of D' Ocean Beach Resort</a>
+      <nav class="nav" id="mainNav">
+        <button class="close-menu" id="closeMenu">✕</button>
+        <a href="index.php">Home</a>
+        <a href="rooms.php">Cottages</a>
+        <a href="gallery.php">Gallery</a>
+        <a href="booking.php" class="cta">Book Now</a>
+        <button id="darkToggle" class="icon-btn" aria-label="Toggle dark mode">🌙</button>
+      </nav>
+      <button id="menuBtn" class="hamburger" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Cottages & Rates</h1>
+    <div class="cards">
+      <div class="room-card image-modal-trigger" data-cottage="WHITE HOUSE">
+        <img src="images&vids/WhiteHouse.png" alt="White House">
+        <div class="room-body">
+          <h3>WHITE HOUSE</h3>
+>>>>>>> a8a2958bd1ab872f9e7f9b7e817dcf7cea3b88df:src/rooms.php
         </div>
       </div>
     </main>
@@ -206,6 +244,7 @@
 
     <hr>
 
+<<<<<<< HEAD:src/rooms.html
   <footer class="footer">
     <div class="container">
       <div class="row">
@@ -215,6 +254,122 @@
             <li><a href="about.html" class="footer-link">About Us</a></li>
             <li><a href="contact.html" class="footer-link">Contact</a></li>
           </ul>
+=======
+      <div class="room-card image-modal-trigger" data-cottage="HEARTSUITE">
+        <img src="images&vids/HeartSuite.jpg" alt="Heartsuite">
+        <div class="room-body">
+          <h3>HEARTSUITE</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="STEPH'S SKYLOUNGE 842/844">
+        <img src="images&vids/SkyLounge.png" alt="Steph's Skylounge">
+        <div class="room-body">
+          <h3>STEPH'S SKYLOUNGE 842/844</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="STEPH'S 846">
+        <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Steph's 846">
+        <div class="room-body">
+          <h3>STEPH'S 846</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="STEPH'S 848">
+        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Steph's 848">
+        <div class="room-body">
+          <h3>STEPH'S 848</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="DE LUXE">
+        <img src="images&vids/Deluxe.jpg" alt="De Luxe">
+        <div class="room-body">
+          <h3>DE LUXE</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="BEATRICE A">
+        <img src="images&vids/BeatriceA.jpg" alt="Beatrice A">
+        <div class="room-body">
+          <h3>BEATRICE A</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="BEATRICE B">
+        <img src="images&vids/BeatriceB.jpg" alt="Beatrice B">
+        <div class="room-body">
+          <h3>BEATRICE B</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="CONCIERGE 815/819">
+        <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Concierge">
+        <div class="room-body">
+          <h3>CONCIERGE 815/819</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="CONCIERGE 817">
+        <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Concierge 817">
+        <div class="room-body">
+          <h3>CONCIERGE 817</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="PREMIUM 838">
+        <img src="images&vids/Premium838.jpg"  alt="Premium">
+        <div class="room-body">
+          <h3>PREMIUM 838</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="PREMIUM 840">
+        <img src="images&vids/Premium840.jpg" alt="Premium 840">
+        <div class="room-body">
+          <h3>PREMIUM 840</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="GIANT KUBO">
+        <img src= "images&vids/GiantKubo.jpg">
+        <div class="room-body">
+          <h3>GIANT KUBO</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="SEASIDE(WHOLE)">
+        <img src="images&vids/SeaSide.jpg" alt="Seaside Whole">
+        <div class="room-body">
+          <h3>SEASIDE (WHOLE)</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="SEASIDE (HALF)">
+        <img src="images&vids/SeaSide.jpg" alt="Seaside Half">
+        <div class="room-body">
+          <h3>SEASIDE (HALF)</h3>
+        </div>
+      </div>
+
+      <div class="room-card image-modal-trigger" data-cottage="BAMBOO KUBO">
+        <img src="images&vids/BambooKubo.jpg" alt="Bamboo Kubo">
+        <div class="room-body">
+          <h3>BAMBOO KUBO</h3>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal Structure -->
+  <div class="modal" id="cottageModal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <div class="modal-body">
+        <div class="modal-image-container">
+          <img class="modal-image" src="" alt="">
+>>>>>>> a8a2958bd1ab872f9e7f9b7e817dcf7cea3b88df:src/rooms.php
         </div>
         
         <div class="footer-col">
@@ -252,10 +407,62 @@
           </div>
         </div>
       </div>
+<<<<<<< HEAD:src/rooms.html
       
       <!-- Copyright -->
       <div class="footer-bottom">
         <p>&copy; 2025 Heart Of D' Ocean Beach Resort. All rights reserved.</p>
+=======
+    </div>
+  </div
+
+  <hr>
+
+ <footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.php" class="footer-link">About Us</a></li>
+          <li><a href="contact.php" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="faq.php" class="footer-link">FAQ</a></li>
+          <li><a href="payment.php" class="footer-link">Payment Options</a></li>
+          <li><a href="cancellation.php" class="footer-link">Cancellation Policy</a></li>
+          <li><a href="terms.php" class="footer-link">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Reach Us</h4>
+        <div class="social-links">
+          <a href="https://www.facebook.com/messages/t/233219370026088" target="_blank">
+            <i class="fab fa-facebook-messenger"></i>
+          </a>
+          <a href="https://www.facebook.com/Heartofdoceanbeachresort/#" target="_blank">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="mailto:heartofdocean2005@yahoo.com">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="https://maps.app.goo.gl/q67iwWwZYtNH51rN8" target="_blank">
+            <i class="fas fa-location-dot"></i>
+          </a>
+        </div>
+        
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <p>📍 Nonong Casto, Lemery, Philippines</p>
+          <p>📞 0917 528 3832</p>
+          <p>⏰ Open 24/7</p>
+        </div>
+>>>>>>> a8a2958bd1ab872f9e7f9b7e817dcf7cea3b88df:src/rooms.php
       </div>
     </div>
   </footer>
