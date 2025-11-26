@@ -10,13 +10,13 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="logo" href="index.html">Heart Of D' Ocean Beach Resort</a>
+      <a class="logo" href="index.php">Heart Of D' Ocean Beach Resort</a>
       <nav class="nav" id="mainNav">
         <button class="close-menu" id="closeMenu">✕</button>
-        <a href="index.html">Home</a>
-        <a href="rooms.html">Cottages</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="booking.html" class="cta">Book Now</a>
+        <a href="index.php">Home</a>
+        <a href="rooms.php">Cottages</a>
+        <a href="gallery.php">Gallery</a>
+        <a href="booking.php" class="cta">Book Now</a>
         <button id="darkToggle" class="icon-btn" aria-label="Toggle dark mode">🌙</button>
       </nav>
       <button id="menuBtn" class="hamburger" aria-label="Toggle menu">☰</button>
@@ -291,7 +291,7 @@
     <div class="contact-prompt">
       <h2>Still have questions?</h2>
       <p>We're here to help! Contact us directly and we'll be happy to assist you.</p>
-      <a href="contact.html" class="btn primary">Contact Us</a>
+      <a href="contact.php" class="btn primary">Contact Us</a>
     </div>
   </main>
 
@@ -301,18 +301,18 @@
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
-          <li><a href="about.html" class="footer-link">About Us</a></li>
-          <li><a href="contact.html" class="footer-link">Contact</a></li>
+          <li><a href="about.php" class="footer-link">About Us</a></li>
+          <li><a href="contact.php" class="footer-link">Contact</a></li>
         </ul>
       </div>
       
       <div class="footer-col">
         <h4>Help</h4>
         <ul>
-          <li><a href="faq.html" class="footer-link">FAQ</a></li>
-          <li><a href="faq.html#payment" class="footer-link">Payment Options</a></li>
-          <li><a href="faq.html#cancellation" class="footer-link">Cancellation Policy</a></li>
-          <li><a href="faq.html#terms" class="footer-link">Terms & Conditions</a></li>
+          <li><a href="faq.php" class="footer-link">FAQ</a></li>
+          <li><a href="faq.php#payment" class="footer-link">Payment Options</a></li>
+          <li><a href="faq.php#cancellation" class="footer-link">Cancellation Policy</a></li>
+          <li><a href="faq.php#terms" class="footer-link">Terms & Conditions</a></li>
         </ul>
       </div>
       
